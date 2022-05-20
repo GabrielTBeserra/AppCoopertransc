@@ -1,0 +1,71 @@
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faUserGroup } from '@fortawesome/free-solid-svg-icons/faUserGroup';
+import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
+import { faTruckRampBox } from '@fortawesome/free-solid-svg-icons/faTruckRampBox';
+import { faHouse } from '@fortawesome/free-solid-svg-icons/faHouse';
+
+import IRoute from './types/IRoute';
+import Menu from './pages/Menu';
+import Vez from './pages/Vez';
+import Avisos from './pages/Avisos';
+
+const Routes: Array<IRoute> = [
+  {
+    Component: Menu,
+    name: 'Menu',
+    options: {
+      tabBarIcon:
+        (tabInfo) => (
+          <FontAwesomeIcon
+            icon={faHouse}
+            size={20}
+            color={tabInfo.focused ? '#006600' : '#8e8e93'}
+          />
+        ),
+    },
+  },
+  {
+    Component: Avisos,
+    name: 'Avisos',
+    options: {
+      tabBarIcon:
+        (tabInfo) => (
+          <FontAwesomeIcon
+            icon={faUserGroup}
+            size={20}
+            color={tabInfo.focused ? '#006600' : '#8e8e93'}
+          />
+        ),
+    },
+  },
+  {
+    Component: Vez,
+    name: 'Teste2',
+    options: {
+      tabBarIcon:
+        (tabInfo) => (
+          <FontAwesomeIcon
+            icon={faTruckRampBox}
+            size={20}
+            color={tabInfo.focused ? '#006600' : '#8e8e93'}
+          />
+        ),
+    },
+  },
+  {
+    Component: Vez,
+    name: 'Teste',
+    options: {
+      tabBarIcon:
+        (tabInfo) => (
+          <FontAwesomeIcon
+            icon={faTruck}
+            size={20}
+            color={tabInfo.focused ? '#006600' : '#8e8e93'}
+          />
+        ),
+    },
+  },
+];
+
+export default Routes;
