@@ -3,8 +3,9 @@ import { useState, useCallback, useEffect } from 'react';
 import defaultApi from '../common/base/service/mainApi';
 
 export const useGet = <T>(initialUrl: string | undefined = undefined,
-  onLoadRequest: boolean | undefined = undefined) => {
-  const [state, setState] = useState<T | undefined>();
+  onLoadRequest: boolean | undefined = undefined,
+  initialValue: T | undefined = undefined) => {
+  const [state, setState] = useState<T | undefined>(initialValue);
 
   useEffect(() => {
     if (onLoadRequest) {

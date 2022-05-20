@@ -10,7 +10,7 @@ import AvisoCard from '../../components/AvisoCard';
 
 function Avisos() {
   const navigation = useNavigation();
-  const [avisos] = useGet<Array<IAviso>>('http://www.coopertransc.com.br/intranet/api/src/public/avisos', true);
+  const [avisos] = useGet<Array<IAviso>>('http://www.coopertransc.com.br/intranet/api/src/public/avisos', true, []);
 
   return (
     <View style={styles.Container}>
@@ -31,8 +31,6 @@ function Avisos() {
 const styles = StyleSheet.create({
   Container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 
 });

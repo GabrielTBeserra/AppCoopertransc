@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Routes from './routes';
 
 import Login from './pages/Login';
+import Avisos from './pages/Avisos';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -39,7 +40,7 @@ function RoutesComponents() {
         tabBarShowLabel: false,
         headerShown: false,
       }}
-      initialRouteName="Home"
+      initialRouteName="Menu"
     >
 
       {Routes.map((route, index) => (

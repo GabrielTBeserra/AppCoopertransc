@@ -1549,6 +1549,11 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
+"@ptomasroos/react-native-multi-slider@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@ptomasroos/react-native-multi-slider/-/react-native-multi-slider-2.2.2.tgz#35a97fb8c355627c6a2ded010b360ac5728b44ad"
+  integrity sha512-HWyCnRD3Z3SbHK2FLWYmBBqd1B4iXipeKv1+AK0FoY/CElEDTEixHE8hN60TsqxalPrznn798LE2Q4tHuCiyaA==
+
 "@react-native-community/cli-debugger-ui@^7.0.3":
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-7.0.3.tgz#3eeeacc5a43513cbcae56e5e965d77726361bcb4"
@@ -6842,6 +6847,11 @@ rimraf@~2.6.2:
   integrity sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==
   dependencies:
     glob "^7.1.3"
+
+rn-range-slider@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/rn-range-slider/-/rn-range-slider-2.1.1.tgz#c469138a3d51a4c79ab53b56d7ba5801e02372b4"
+  integrity sha512-tDfH8G4e/k+waGMMd+HaYTlpOqyh1dd3aWdDmqKo0WGh1BfHB+NXy0X2REyr1ZJDvsrq7WEeFZ+PBTdD6cisbw==
 
 run-parallel@^1.1.9:
   version "1.2.0"

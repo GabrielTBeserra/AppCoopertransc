@@ -49,11 +49,11 @@ const Menu: React.FC<Props> = ({ title, sub }) => {
 
 const styles = StyleSheet.create({
   Container: {
-    flex: 1,
     flexDirection: 'row',
     marginTop: 40,
     marginBottom: 10,
     alignItems: 'center',
+    alignSelf: 'flex-start',
     margin: 15,
   },
   loginButton: {
