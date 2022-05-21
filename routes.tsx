@@ -8,6 +8,7 @@ import Menu from './pages/Menu';
 import Vez from './pages/Vez';
 import Avisos from './pages/Avisos';
 import Viagens from './pages/Viagens';
+import MinhasViagens from './pages/MinhasViagens';
 
 const Routes: Array<IRoute> = [
   {
@@ -69,6 +70,22 @@ const Routes: Array<IRoute> = [
         ),
     },
   },
+  {
+    Component: MinhasViagens,
+    name: 'MinhasViagens',
+    options: {
+      unmountOnBlur: true,
+      tabBarIcon:
+        (tabInfo) => (
+          <FontAwesomeIcon
+            icon={faTruck}
+            size={20}
+            color={tabInfo.focused ? '#006600' : '#8e8e93'}
+          />
+        ),
+    },
+  },
+
 ];
 
 export default Routes;

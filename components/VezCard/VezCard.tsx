@@ -31,13 +31,22 @@ const VezCard: React.FC<Props> = ({ data }) => {
     if (type.includes('CVB')) { return styles.BoxTitleBlue; }
     if (type.includes('CS') || type.includes('CV')) { return styles.BoxTitleYellow; }
     if (type.includes('TS') || type.includes('TB')) { return styles.BoxTitleGreen; }
+    return null;
+  };
+
+  const zeroFill = (number: string, width = 3) => {
+    width -= number.toString().length;
+    if (width > 0) {
+      return new Array(width + (/\./.test(number) ? 2 : 1)).join('0') + number;
+    }
+    return `${number}`; // always return a string
   };
 
   return (
     <View style={styles.Container}>
       <View style={getBoxColor(data.veiculo)}>
         <View>
-          <Text style={styles.TextStyle}>001</Text>
+          <Text style={styles.TextStyle}>{zeroFill(`${data.posicao}`)}</Text>
         </View>
         <View>
           <Text style={styles.TextStyle}>{`${dataFormatter(data.data_marcacao)} ${data.hora_marcacao}`}</Text>
@@ -122,7 +131,8 @@ const VezCard: React.FC<Props> = ({ data }) => {
 const styles = StyleSheet.create({
   Container: {
     flex: 1,
-    margin: 20,
+    marginHorizontal: 20,
+    marginVertical: 10,
     borderRadius: 5,
     backgroundColor: 'white',
   },

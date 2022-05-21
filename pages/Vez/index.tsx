@@ -7,10 +7,21 @@ import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
 import { useGet } from '../../hooks/useFetch';
 import IVez from '../../types/IVez';
 import Header from '../../components/Header';
-import VezCard from '../../components/VezCard';
+import VezCard from '../../components/VezCard/VezCard';
+import Classify from '../../workers/VeiculoClassify';
 
 function Ver() {
   const [vezList] = useGet<Array<IVez>>('http://www.coopertransc.com.br/intranet/api/src/public/vez', true);
+  const [listaClissificada, setListaClissificada] = React.useState<Array<IVez>>([]);
+
+  React.useEffect(() => {
+    if (vezList) {
+      if (vezList.length > 0) {
+        const lista = Classify(vezList);
+        setListaClissificada(lista);
+      }
+    }
+  }, [vezList]);
 
   return (
     <SafeAreaView style={styles.Container}>
@@ -42,7 +53,7 @@ function Ver() {
         </View>
       </View>
       <FlatList
-        data={vezList}
+        data={listaClissificada}
         style={{ width: '100%' }}
         numColumns={1}
         scrollEnabled

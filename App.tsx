@@ -17,7 +17,6 @@ function App() {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-          tabBarShowLabel: false,
         }}
         initialRouteName="Home"
       >

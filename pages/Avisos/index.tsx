@@ -14,7 +14,7 @@ function Avisos() {
 
   return (
     <View style={styles.Container}>
-      <Header title="Avisos" />
+      <Header title="Avisos" sub=" " />
       <FlatList
         data={avisos}
         style={{ width: '100%' }}

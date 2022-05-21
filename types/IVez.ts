@@ -9,6 +9,7 @@ type IVez = {
   unidade: string,
   estados: string,
   chegada: string
+  posicao: number
 }
 
 export default IVez;
