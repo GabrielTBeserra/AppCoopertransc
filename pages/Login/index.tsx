@@ -40,7 +40,7 @@ function Login() {
           }}
         />
         <View style={styles.loginButton}>
-          <Button title="Entrar" onPress={() => navigation.navigate('Menu')} color="#00433E" />
+          <Button title="Entrar" onPress={() => navigation.navigate('MenuComp')} color="#00433E" />
         </View>
       </View>
     </ScrollView>

@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Routes from './routes';
 
 import Login from './pages/Login';
-import Avisos from './pages/Avisos';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -13,6 +13,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
+      <StatusBar />
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
@@ -25,7 +26,7 @@ function App() {
           component={Login}
         />
         <Stack.Screen
-          name="Menu"
+          name="MenuComp"
           component={RoutesComponents}
         />
       </Stack.Navigator>

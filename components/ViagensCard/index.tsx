@@ -5,9 +5,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons/faCheckCircle';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons/faCircleXmark';
 import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
-import {
-  StyleSheet, FlatList, View, Pressable, Text,
-} from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import IViagens from '../../types/IViagens';
 
@@ -143,8 +141,9 @@ const styles = StyleSheet.create({
     margin: 20,
     paddingTop: 15,
     paddingBottom: 15,
-    paddingLeft: 40,
-    paddingRight: 40,
+    borderRadius: 5,
+    paddingLeft: 20,
+    paddingRight: 20,
     backgroundColor: 'white',
   },
   loginButton: {

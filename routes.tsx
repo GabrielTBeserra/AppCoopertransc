@@ -43,10 +43,11 @@ const Routes: Array<IRoute> = [
     Component: Vez,
     name: 'Vez',
     options: {
+      unmountOnBlur: true,
       tabBarIcon:
         (tabInfo) => (
           <FontAwesomeIcon
-            icon={faTruck}
+            icon={faUserGroup}
             size={20}
             color={tabInfo.focused ? '#006600' : '#8e8e93'}
           />

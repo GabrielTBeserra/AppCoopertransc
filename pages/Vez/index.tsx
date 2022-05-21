@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {
-  StyleSheet, ScrollView, Button, Text, View, SafeAreaView, FlatList,
+  StyleSheet, SafeAreaView, FlatList, View, Text,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
 import { useGet } from '../../hooks/useFetch';
 import IVez from '../../types/IVez';
 import Header from '../../components/Header';
@@ -10,22 +11,46 @@ import VezCard from '../../components/VezCard';
 
 function Ver() {
   const [vezList] = useGet<Array<IVez>>('http://www.coopertransc.com.br/intranet/api/src/public/vez', true);
-  const navigation = useNavigation();
 
   return (
     <SafeAreaView style={styles.Container}>
-      <Header title="Vez" sub="Pronto para engate imediato" />
+      <Header title="Vez" sub="Disponível para Carregamento Imediato" />
+      <View style={styles.HeaderInfo}>
+        <View style={styles.Icon}>
+          <FontAwesomeIcon
+            icon={faCircle}
+            size={20}
+            color="#00AC00"
+          />
+          <Text style={styles.AjustText}>Truck</Text>
+        </View>
+        <View style={styles.Icon}>
+          <FontAwesomeIcon
+            icon={faCircle}
+            size={20}
+            color="#FFF000"
+          />
+          <Text style={styles.AjustText}>Carrega</Text>
+        </View>
+        <View style={styles.Icon}>
+          <FontAwesomeIcon
+            icon={faCircle}
+            size={20}
+            color="#5F95F0"
+          />
+          <Text style={styles.AjustText}>Bitrem</Text>
+        </View>
+      </View>
       <FlatList
         data={vezList}
         style={{ width: '100%' }}
         numColumns={1}
         scrollEnabled
-        renderItem={({ item, index }) => (
+        renderItem={({ item }) => (
           <VezCard data={item} />
         )}
       />
     </SafeAreaView>
-
   );
 }
 
@@ -41,6 +66,21 @@ const styles = StyleSheet.create({
   },
   Inputs: {
     marginTop: 15,
+  },
+  HeaderInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderRadius: 5,
+    margin: 20,
+    padding: 15,
+    backgroundColor: 'white',
+  },
+  Icon: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  AjustText: {
+    marginLeft: 5,
   },
 });
 

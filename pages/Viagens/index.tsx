@@ -5,6 +5,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
 import { useNavigation } from '@react-navigation/native';
+import moment from 'moment';
 import { useGet } from '../../hooks/useFetch';
 import Header from '../../components/Header';
 import IViagens from '../../types/IViagens';
@@ -18,13 +19,21 @@ function Viagens() {
     <SafeAreaView style={styles.Container}>
       <Header title="Viagens" sub="Relatório das últimas 48 horas" />
       <View style={styles.Datas}>
-        <Text>De 27/04/2022</Text>
+        <Text>
+          De
+          {' '}
+          {moment().subtract(2, 'days').format('DD/MM/YYYY')}
+        </Text>
         <FontAwesomeIcon
           icon={faArrowRight}
           size={20}
           color="orange"
         />
-        <Text>Até 27/04/2022</Text>
+        <Text>
+          Até
+          {' '}
+          {moment().format('DD/MM/YYYY')}
+        </Text>
       </View>
       <FlatList
         data={viagensList}
