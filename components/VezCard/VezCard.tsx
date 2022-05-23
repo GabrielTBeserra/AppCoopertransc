@@ -28,9 +28,9 @@ const VezCard: React.FC<Props> = ({ data }) => {
   };
 
   const getBoxColor = (type: string) => {
-    if (type.includes('CVB')) { return styles.BoxTitleBlue; }
-    if (type.includes('CS') || type.includes('CV')) { return styles.BoxTitleYellow; }
-    if (type.includes('TS') || type.includes('TB')) { return styles.BoxTitleGreen; }
+    if (type === 'CVB') { return styles.BoxTitleBlue; }
+    if (type === 'CS' || type === 'CV') { return styles.BoxTitleYellow; }
+    if (type === 'TS' || type === 'TB') { return styles.BoxTitleGreen; }
     return null;
   };
 
@@ -44,7 +44,7 @@ const VezCard: React.FC<Props> = ({ data }) => {
 
   return (
     <View style={styles.Container}>
-      <View style={getBoxColor(data.veiculo)}>
+      <View style={getBoxColor(data.tipo_veiculo)}>
         <View>
           <Text style={styles.TextStyle}>{zeroFill(`${data.posicao}`)}</Text>
         </View>

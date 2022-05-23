@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {
-  StyleSheet, Image, ScrollView, Button, View,
+  StyleSheet, Image, Button, View,
+  SafeAreaView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import Input from '../../components/Input';
 
-const ImagemFundo = require('../../assets/images/teste.jpg');
+const ImagemFundo = require('../../assets/images/logo.jpeg');
 
 const ImagemFundoUri = Image.resolveAssetSource(ImagemFundo).uri;
 
@@ -16,11 +17,13 @@ function Login() {
   const [password, setPassword] = React.useState('');
 
   return (
-    <ScrollView style={styles.Container}>
-      <Image source={{ uri: ImagemFundoUri }} style={styles.Imagem} />
+
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.Logo}>
+        <Image source={{ uri: ImagemFundoUri }} style={styles.Imagem} />
+      </View>
 
       <View style={styles.Inputs}>
-
         <Input
           value={email}
           label="CPF / CNPJ"
@@ -43,7 +46,8 @@ function Login() {
           <Button title="Entrar" onPress={() => navigation.navigate('MenuComp')} color="#00433E" />
         </View>
       </View>
-    </ScrollView>
+    </SafeAreaView>
+
   );
 }
 
@@ -52,12 +56,20 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   Imagem: {
-    height: 350,
+    resizeMode: 'cover',
+    height: 388,
+    flex: 1,
   },
   loginButton: {
     margin: 10,
   },
+  Logo: {
+    flex: 1,
+  },
   Inputs: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
     marginTop: 15,
   },
 });

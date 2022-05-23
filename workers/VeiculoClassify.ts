@@ -7,11 +7,11 @@ const Classify = (data: Array<IVez>) => {
 
   const teste = data.map((x) => {
     let tipo = '';
-    if (x.veiculo.includes(' CVB ')) {
+    if (x.tipo_veiculo === 'CVB') {
       tipo = 'CVB';
-    } else if (x.veiculo.includes(' CS ') || x.veiculo.includes(' CV ')) {
+    } else if (x.tipo_veiculo === 'CS' || x.tipo_veiculo === 'CV') {
       tipo = 'CS';
-    } else if (x.veiculo.includes(' TS ') || x.veiculo.includes(' TB ')) {
+    } else if (x.tipo_veiculo === 'TS' || x.tipo_veiculo === 'TB') {
       tipo = 'TS';
     }
 

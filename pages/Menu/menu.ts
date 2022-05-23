@@ -14,16 +14,6 @@ const Routes: Array<IMenuRoute> = [
     navigateTo: 'Avisos',
   },
   {
-    name: 'Comprovante',
-    icon: faTicketSimple,
-    navigateTo: 'Comprovante',
-  },
-  {
-    name: 'Devoluções',
-    icon: faBox,
-    navigateTo: 'Devolucoes',
-  },
-  {
     name: 'Minhas Viagens',
     icon: faLocationDot,
     navigateTo: 'MinhasViagens',

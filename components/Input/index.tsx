@@ -28,7 +28,7 @@ const Login: React.FC<Props> = ({
           style={styles.Input}
           value={value}
           keyboardType={type}
-          secureTextEntry={hidePass}
+          secureTextEntry={isPassword && hidePass}
           placeholder={placeholder}
           onChangeText={(e) => onChangeText(e)}
         />
@@ -48,11 +48,9 @@ const Login: React.FC<Props> = ({
 
 const styles = StyleSheet.create({
   Container: {
-    flex: 1,
     padding: 10,
   },
   Input: {
-
     alignSelf: 'stretch',
     padding: 10,
     fontSize: 22,

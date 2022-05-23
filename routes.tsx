@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUserGroup } from '@fortawesome/free-solid-svg-icons/faUserGroup';
 import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 import { faHouse } from '@fortawesome/free-solid-svg-icons/faHouse';
+import { faVanShuttle } from '@fortawesome/free-solid-svg-icons/faVanShuttle';
 
 import IRoute from './types/IRoute';
 import Menu from './pages/Menu';
@@ -78,7 +79,7 @@ const Routes: Array<IRoute> = [
       tabBarIcon:
         (tabInfo) => (
           <FontAwesomeIcon
-            icon={faTruck}
+            icon={faVanShuttle}
             size={20}
             color={tabInfo.focused ? '#006600' : '#8e8e93'}
           />
