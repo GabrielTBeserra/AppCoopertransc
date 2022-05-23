@@ -1,17 +1,9 @@
-import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
-import { faAngleUp } from '@fortawesome/free-solid-svg-icons/faAngleUp';
-import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 
 import * as React from 'react';
-import {
-  StyleSheet, View, Text, Pressable,
-} from 'react-native';
-import { faAlignJustify } from '@fortawesome/free-solid-svg-icons';
+import { StyleSheet, View, Text } from 'react-native';
 import IVez from '../../types/IVez';
-import Card from '../Card';
 
 type Props = {
   data: IVez
@@ -80,49 +72,7 @@ const VezCard: React.FC<Props> = ({ data }) => {
             {data.estados}
           </Text>
         </View>
-        {!isClosed && (
-          <>
-            <View style={{
-              borderColor: 'black', borderWidth: 0.3, marginTop: 15, marginBottom: 10,
-            }}
-            />
-            <View style={styles.Line}>
-              <FontAwesomeIcon
-                icon={faTruck}
-                size={20}
-                color="#00433E"
-              />
-              <Text style={styles.TextWrap}>
-                {data.veiculo}
-              </Text>
-            </View>
-            <View style={styles.Line}>
-              <Text>
-                Engatada com:
-              </Text>
-              <Text style={styles.TextWrap}>
-                {data.Engatado}
-              </Text>
-            </View>
-            <View style={styles.Line}>
-              <Text>
-                Data Chegada:
-              </Text>
-              <Text>
-                {data.chegada}
-              </Text>
-            </View>
-          </>
-        )}
-        <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
-          <Pressable onPress={() => setIsClosed(!isClosed)}>
-            <FontAwesomeIcon
-              icon={isClosed ? faAngleDown : faAngleUp}
-              size={20}
-              color="#00433E"
-            />
-          </Pressable>
-        </View>
+
       </View>
     </View>
   );

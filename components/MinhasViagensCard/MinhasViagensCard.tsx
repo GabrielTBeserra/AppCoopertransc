@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   Line: {
+    flexWrap: 'wrap',
     marginTop: 15,
     flexDirection: 'row',
     alignItems: 'center',
