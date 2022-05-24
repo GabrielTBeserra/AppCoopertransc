@@ -5,9 +5,10 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import { SvgUri } from 'react-native-svg';
 import Input from '../../components/Input';
 
-const ImagemFundo = require('../../assets/images/logo.jpeg');
+const ImagemFundo = require('../../assets/images/logo.svg');
 
 const ImagemFundoUri = Image.resolveAssetSource(ImagemFundo).uri;
 
@@ -20,7 +21,12 @@ function Login() {
 
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.Logo}>
-        <Image source={{ uri: ImagemFundoUri }} style={styles.Imagem} />
+        <SvgUri
+          uri={ImagemFundoUri}
+          scaleX={0.3}
+          scaleY={0.3}
+          style={{ flex: 1 }}
+        />
       </View>
 
       <View style={styles.Inputs}>
@@ -57,19 +63,19 @@ const styles = StyleSheet.create({
   },
   Imagem: {
     resizeMode: 'cover',
-    height: 388,
-    flex: 1,
   },
   loginButton: {
     margin: 10,
   },
   Logo: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
   },
   Inputs: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     marginTop: 15,
   },
 });
