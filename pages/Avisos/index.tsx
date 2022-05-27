@@ -20,6 +20,7 @@ function Avisos() {
         style={{ width: '100%' }}
         numColumns={1}
         scrollEnabled
+        overScrollMode="always"
         renderItem={({ item, index }) => (
           <AvisoCard data={item} />
         )}

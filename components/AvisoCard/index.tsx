@@ -12,8 +12,8 @@ const AvisoCard: React.FC<Props> = ({ data }) => (
     <WebView
       containerStyle={{ height: 350 }}
       source={{ html: data.mensagem }}
-      textZoom={150}
-      scrollEnabled={false}
+      textZoom={200}
+      scrollEnabled
     />
   </Card>
 );

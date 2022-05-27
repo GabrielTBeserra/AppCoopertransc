@@ -26,6 +26,13 @@ const VezCard: React.FC<Props> = ({ data }) => {
     return null;
   };
 
+  const getTextColor = (type: string) => {
+    if (type === 'CVB') { return styles.TextStyle; }
+    if (type === 'CS' || type === 'CV') { return styles.TextStyleYellow; }
+    if (type === 'TS' || type === 'TB') { return styles.TextStyle; }
+    return null;
+  };
+
   const zeroFill = (number: string, width = 3) => {
     width -= number.toString().length;
     if (width > 0) {
@@ -38,10 +45,10 @@ const VezCard: React.FC<Props> = ({ data }) => {
     <View style={styles.Container}>
       <View style={getBoxColor(data.tipo_veiculo)}>
         <View>
-          <Text style={styles.TextStyle}>{zeroFill(`${data.posicao}`)}</Text>
+          <Text style={getTextColor(data.tipo_veiculo)}>{zeroFill(`${data.posicao}`)}</Text>
         </View>
         <View>
-          <Text style={styles.TextStyle}>{`${dataFormatter(data.data_marcacao)} ${data.hora_marcacao}`}</Text>
+          <Text style={getTextColor(data.tipo_veiculo)}>{`${dataFormatter(data.data_marcacao)} ${data.hora_marcacao}`}</Text>
         </View>
       </View>
       <View style={styles.Content}>
@@ -54,14 +61,6 @@ const VezCard: React.FC<Props> = ({ data }) => {
           />
           <Text>
             {data.cooperado}
-          </Text>
-        </View>
-        <View style={styles.Line}>
-          <Text>
-            Marcou vez na:
-          </Text>
-          <Text>
-            {data.unidade}
           </Text>
         </View>
         <View style={styles.Line}>
@@ -123,6 +122,10 @@ const styles = StyleSheet.create({
   TextStyle: {
     fontWeight: 'bold',
     color: 'white',
+  },
+  TextStyleYellow: {
+    fontWeight: 'bold',
+    color: 'black',
   },
   TitleText: {
     marginLeft: 5, color: '#00AC00', fontWeight: 'bold', fontSize: 14,

@@ -1,23 +1,19 @@
-import React, {
-  useMemo, useRef, useState,
-} from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 
 import {
-  StyleSheet, Text, View, SafeAreaView, FlatList, Pressable,
-
+  StyleSheet, Text, View, SafeAreaView, FlatList, Pressable, Button,
 } from 'react-native';
-
-import DropDownPicker from 'react-native-dropdown-picker';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter';
 
 import BottomSheet, {
   BottomSheetView,
-  BottomSheetScrollView,
-  BottomSheetVirtualizedList,
 } from '@gorhom/bottom-sheet';
 
+import moment from 'moment';
+import DropDownPicker from 'react-native-dropdown-picker';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter';
 import { useFocusEffect } from '@react-navigation/native';
+import { DateTimePickerAndroid, DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import Header from '../../components/Header';
 import IViagens from '../../types/IViagens';
 import MinhasViagensCard from '../../components/MinhasViagensCard/MinhasViagensCard';
@@ -27,7 +23,7 @@ import { Estados } from '../../common/base/infos/Arrays';
 type Post = {
   data_inicio: string,
   data_fim: string,
-  estado_destino: string,
+  estado: string,
   id: string
 }
 
@@ -36,30 +32,71 @@ function MinhasViagens() {
     {
       data_inicio: '01/03/2021',
       data_fim: '30/03/2022',
-      estado_destino: '',
-      id: '13',
+      estado: '',
+      id: '219',
     },
     'http://www.coopertransc.com.br/intranet/api/src/public/minhasviagens',
     true,
   );
 
+  // Refs and Memo
   const bottomSheetModalRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ['50%'], []);
+  const snapPoints = useMemo(() => ['60%'], []);
 
+  // States
   const [estadosOpen, setEstadosOpen] = useState(false);
-  const [estado, setEstado] = useState(null);
-  const [periodo, setPeriodo] = useState('1');
-  const [bottomIsOpen, setBottomIsOpen] = useState(-1);
-  const [periodoOpen, setPeriodoOpen] = useState(false);
-  const periodos = [
-    { label: 'Dia', value: '1' },
-    { label: 'Período', value: '2' },
-  ];
+  const [estado, setEstado] = useState('');
+  const [dataInicio, setDataInicio] = useState(moment().subtract(1, 'month').toDate());
+  const [dataFinal, setDataFinal] = useState(new Date());
+
+  // Functions
+  const onChangeInicio = (event: DateTimePickerEvent, selectedDate: Date | undefined) => {
+    if (selectedDate) {
+      setDataInicio(selectedDate);
+    }
+  };
+
+  const onChangeFinal = (event: DateTimePickerEvent, selectedDate: Date | undefined) => {
+    if (selectedDate) {
+      setDataFinal(selectedDate);
+    }
+  };
+
+  const filter = () => {
+    resendRequest({
+      data_inicio: moment(dataInicio).format('DD/MM/YYYY'),
+      data_fim: moment(dataFinal).format('DD/MM/YYYY'),
+      estado,
+      id: '219',
+    });
+
+    bottomSheetModalRef.current?.close();
+  };
+
+  const showDataInicioPicker = () => {
+    DateTimePickerAndroid.open({
+      value: dataInicio,
+      onChange: onChangeInicio,
+      mode: 'date',
+      is24Hour: true,
+      maximumDate: dataFinal,
+    });
+  };
+
+  const showDataFinalPicker = () => {
+    DateTimePickerAndroid.open({
+      value: dataFinal,
+      onChange: onChangeFinal,
+      mode: 'date',
+      is24Hour: true,
+      maximumDate: new Date(),
+    });
+  };
 
   return (
 
     <SafeAreaView style={styles.Container}>
-      <Header title="Minhas Viagens" sub="asjkdnaoisdn" />
+      <Header title="Minhas Viagens" sub="NOME DO CAMINHÃO" />
       <View style={styles.FilterHeader}>
         <Pressable onPress={() => {
           bottomSheetModalRef.current?.snapToIndex(0);
@@ -78,7 +115,7 @@ function MinhasViagens() {
 
       </View>
       <FlatList
-        data={[]}
+        data={viagensList}
         style={{ width: '100%' }}
         numColumns={1}
         scrollEnabled
@@ -91,38 +128,34 @@ function MinhasViagens() {
         snapPoints={snapPoints}
         ref={bottomSheetModalRef}
         enablePanDownToClose
-        index={-1}
       >
         <BottomSheetView focusHook={useFocusEffect}>
-          <View style={styles.SheetContent}>
-            <Text>Filtrar Por</Text>
-            <View style={styles.DropDownSeparator}>
-              <DropDownPicker
-                open={periodoOpen}
-                value={periodo}
-                items={periodos}
-                setOpen={setPeriodoOpen}
-                setValue={setPeriodo}
-                onOpen={() => setEstadosOpen(false)}
-                style={{ borderRadius: 2 }}
-                zIndex={3000}
-                zIndexInverse={1000}
-              />
+          <View style={styles.DropDownSeparator}>
+            <View style={styles.Header}>
+              <Text style={styles.HeaderText}>Filtrar por:</Text>
             </View>
-            {
-              periodo === '1' ? (
-                <View style={styles.DropDownSeparator}>
-                  <Text>Dia</Text>
-                </View>
-              ) : (
-                <>
-                  <Text>Inicio</Text>
-                  <Text>Fim</Text>
-                </>
-              )
-            }
+            <View style={styles.Date}>
+              <Pressable onPress={() => showDataInicioPicker()}>
+                <Text style={styles.LabelText}>Data Inicio:</Text>
+                <Text style={styles.CommonText}>
+                  {moment(dataInicio).format('DD/MM/YYYY')}
+                </Text>
+              </Pressable>
+            </View>
+          </View>
+          <View style={styles.DropDownSeparator}>
+            <View style={styles.Date}>
+              <Pressable onPress={() => showDataFinalPicker()}>
+                <Text style={styles.LabelText}>Data Inicio:</Text>
+                <Text style={styles.CommonText}>
+                  {moment(dataFinal).format('DD/MM/YYYY')}
+                </Text>
+              </Pressable>
+            </View>
+          </View>
 
-            <View style={styles.DropDownSeparator}>
+          <View style={styles.DropDownSeparator}>
+            <View style={styles.EstadosContainer}>
               <DropDownPicker
                 open={estadosOpen}
                 value={estado}
@@ -130,17 +163,25 @@ function MinhasViagens() {
                 setOpen={setEstadosOpen}
                 listMode="MODAL"
                 placeholder="Estado"
-                onOpen={() => setPeriodoOpen(false)}
                 setValue={setEstado}
-                style={{ borderRadius: 2 }}
+                style={styles.Estados}
                 autoScroll
+                textStyle={{ color: '#00433E' }}
                 closeAfterSelecting
                 zIndex={100}
                 zIndexInverse={500}
               />
-
             </View>
+
           </View>
+          <View style={styles.FilterButton}>
+            <Button
+              onPress={() => filter()}
+              title="Filtrar"
+              color="#00433E"
+            />
+          </View>
+
         </BottomSheetView>
       </BottomSheet>
 
@@ -153,6 +194,14 @@ const styles = StyleSheet.create({
   Container: {
     flex: 1,
     backgroundColor: '#E5E5E5',
+  },
+  CommonText: {
+    color: '#00433E',
+  },
+  LabelText: {
+    color: '#00433E',
+    fontSize: 17,
+    marginBottom: 5,
   },
   Imagem: {
     height: 350,
@@ -177,6 +226,9 @@ const styles = StyleSheet.create({
   ModalContent: {
     flex: 1,
   },
+  Header: {
+    paddingHorizontal: 25,
+  },
   ModalInternContent: {
     backgroundColor: 'red',
   },
@@ -199,6 +251,10 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: 'grey',
   },
+  HeaderText: {
+    fontSize: 25,
+    color: '#005c56',
+  },
   contentContainer: {
     flex: 1,
     alignItems: 'center',
@@ -208,6 +264,31 @@ const styles = StyleSheet.create({
     zIndex: 1000,
   },
   DropDownSeparator: {
+    marginTop: 15,
+  },
+  Date: {
+    borderColor: 'black',
+    padding: 10,
+    marginHorizontal: 15,
+    borderWidth: 2,
+    borderBottomColor: '#00433E',
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
+    borderTopWidth: 0,
+  },
+  Estados: {
+    borderRadius: 2,
+    borderWidth: 2,
+    borderBottomColor: '#00433E',
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
+    borderTopWidth: 0,
+  },
+  EstadosContainer: {
+    marginHorizontal: 15,
+  },
+  FilterButton: {
+    marginHorizontal: 15,
     marginTop: 15,
   },
 });

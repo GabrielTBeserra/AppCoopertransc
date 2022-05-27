@@ -7,6 +7,7 @@ import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 import { StyleSheet, View, Text } from 'react-native';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import moment from 'moment';
 import IViagens from '../../types/IViagens';
 
 type Props = {
@@ -22,6 +23,11 @@ const MinhasViagensCard: React.FC<Props> = ({ data }) => {
     const dia = dateToConvert.substring(8, 10);
 
     return `${dia}/${mes}/${ano}`;
+  };
+
+  const differ = (d1: string, d2: string) => {
+    const dif = moment(d2, 'YYYY-MM-DD').diff(moment(d1, 'YYYY-MM-DD'));
+    return moment.duration(dif).asDays();
   };
 
   const typeOsStatus = (status: string) => {
@@ -112,7 +118,7 @@ const MinhasViagensCard: React.FC<Props> = ({ data }) => {
           Diferença em dias:
         </Text>
         <Text>
-          6 Dia(s)
+          {differ(data.data_marcacao, data.data_escolha)}
         </Text>
       </View>
     </View>
