@@ -35,7 +35,7 @@ export const useGet = <T>(initialUrl: string | undefined = undefined,
   return [state, request] as const;
 };
 
-export const usePost = <T, K>(value: K | undefined, initialUrl: string | undefined = undefined,
+export const usePost = <T, K>(value: T | undefined, initialUrl: string | undefined = undefined,
   onLoadRequest: boolean | undefined = undefined) => {
   const [state, setState] = useState<K | undefined>();
 

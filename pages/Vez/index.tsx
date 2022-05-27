@@ -41,7 +41,7 @@ function Ver() {
             size={20}
             color="#FFF000"
           />
-          <Text style={styles.AjustText}>Carrega</Text>
+          <Text style={styles.AjustText}>Carreta</Text>
         </View>
         <View style={styles.Icon}>
           <FontAwesomeIcon
