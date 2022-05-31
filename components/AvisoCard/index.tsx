@@ -1,5 +1,5 @@
 import * as React from 'react';
-import WebView from 'react-native-webview';
+import WebView from "react-native-webview";
 import IAviso from '../../types/IAviso';
 import Card from '../Card';
 
