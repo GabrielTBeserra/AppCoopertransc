@@ -1,4 +1,4 @@
-name: Main Formatter
+name: Code Formatter
 
 # This action works with pull requests and pushes
 on:
