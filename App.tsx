@@ -48,6 +48,7 @@ function RoutesComponents() {
       {Routes.map((route, index) => (
         <Tab.Screen
           name={route.name}
+
           component={route.Component}
           key={index}
           options={route.options}

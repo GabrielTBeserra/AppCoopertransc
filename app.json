@@ -4,10 +4,10 @@
     "slug": "AppCoopertransc",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/global-icon.jpeg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/images/global-icon.jpeg",
       "resizeMode": "contain",
       "backgroundColor": "#00433E"
     },
@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/images/global-icon.jpeg",
         "backgroundColor": "#00433E"
       },
       "package": "com.gabrielteles.AppCoopertransc"

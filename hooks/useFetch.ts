@@ -36,8 +36,9 @@ export const useGet = <T>(initialUrl: string | undefined = undefined,
 };
 
 export const usePost = <T, K>(value: T | undefined, initialUrl: string | undefined = undefined,
-  onLoadRequest: boolean | undefined = undefined) => {
-  const [state, setState] = useState<K | undefined>();
+  onLoadRequest: boolean | undefined = undefined,
+  initialValue: K | undefined = undefined) => {
+  const [state, setState] = useState<K | undefined>(initialValue);
 
   useEffect(() => {
     if (onLoadRequest) {

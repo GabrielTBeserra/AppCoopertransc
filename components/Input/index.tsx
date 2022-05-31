@@ -12,10 +12,12 @@ type Props = {
   type?: KeyboardTypeOptions;
   placeholder?: string;
   isPassword?: boolean;
+  isInvalid?: boolean;
+  maxLength?: number;
 };
 
 const Login: React.FC<Props> = ({
-  onChangeText, label, value, type, placeholder, isPassword,
+  onChangeText, label, value, type, placeholder, isPassword, isInvalid, maxLength,
 }) => {
   const [hidePass, setHidePass] = React.useState(true);
 
@@ -23,11 +25,12 @@ const Login: React.FC<Props> = ({
     <View style={styles.Container}>
       <Text style={styles.Label}>{label}</Text>
 
-      <View style={styles.InputFull}>
+      <View style={!isInvalid ? styles.InputFull : styles.InputInvalid}>
         <TextInput
           style={styles.Input}
           value={value}
           keyboardType={type}
+          maxLength={maxLength}
           secureTextEntry={isPassword && hidePass}
           placeholder={placeholder}
           onChangeText={(e) => onChangeText(e)}
@@ -56,6 +59,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     width: '90%',
   },
+
   Label: {
     marginBottom: 10,
     color: '#00433E',
@@ -69,6 +73,15 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 0.5,
     borderColor: '#00433E',
+  },
+  InputInvalid: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: 'red',
   },
 });
 

@@ -4,15 +4,18 @@ import {
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
+import BottomSheet from '@gorhom/bottom-sheet';
 import { useGet } from '../../hooks/useFetch';
 import IVez from '../../types/IVez';
 import Header from '../../components/Header';
 import VezCard from '../../components/VezCard/VezCard';
 import Classify from '../../workers/VeiculoClassify';
+import LogoutSheet from '../../components/LogoutSheet/LogoutSheet';
 
 function Ver() {
-  const [vezList] = useGet<Array<IVez>>('http://www.coopertransc.com.br/intranet/api/src/public/vez', true);
+  const [vezList] = useGet<Array<IVez>>('http://www.coopertransc.com.br/api/public/api/vez', true);
   const [listaClissificada, setListaClissificada] = React.useState<Array<IVez>>([]);
+  const bottomSheetModalRef = React.useRef<BottomSheet>(null);
 
   React.useEffect(() => {
     if (vezList) {
@@ -25,7 +28,7 @@ function Ver() {
 
   return (
     <SafeAreaView style={styles.Container}>
-      <Header title="Vez" sub="Disponível para Carregamento Imediato" />
+      <Header title="Vez" sub="Disponível para Carregamento Imediato" bottomSheetModalRef={bottomSheetModalRef} />
       <View style={styles.HeaderInfo}>
         <View style={styles.Icon}>
           <FontAwesomeIcon
@@ -61,6 +64,7 @@ function Ver() {
           <VezCard data={item} />
         )}
       />
+      <LogoutSheet bottomSheetModalRef={bottomSheetModalRef} />
     </SafeAreaView>
   );
 }

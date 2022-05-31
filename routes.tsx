@@ -16,6 +16,7 @@ const Routes: Array<IRoute> = [
     Component: Menu,
     name: 'Menu',
     options: {
+      unmountOnBlur: true,
       tabBarIcon:
         (tabInfo) => (
           <FontAwesomeIcon
@@ -31,6 +32,7 @@ const Routes: Array<IRoute> = [
     name: 'Avisos',
     options: {
       tabBarItemStyle: { display: 'none' },
+      unmountOnBlur: true,
       tabBarIcon:
         (tabInfo) => (
           <FontAwesomeIcon
