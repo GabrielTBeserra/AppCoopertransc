@@ -1,6 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faUserGroup } from '@fortawesome/free-solid-svg-icons/faUserGroup';
-import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faUserGroup } from "@fortawesome/free-solid-svg-icons/faUserGroup";
+import { faTruck } from "@fortawesome/free-solid-svg-icons/faTruck";
 import { faHouse } from '@fortawesome/free-solid-svg-icons/faHouse';
 import { faVanShuttle } from '@fortawesome/free-solid-svg-icons/faVanShuttle';
 
