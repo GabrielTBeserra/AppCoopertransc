@@ -26,5 +26,4 @@ export const Estados = [
   { label: 'São Paulo', value: 'SP' },
   { label: 'Sergipe', value: 'SE' },
   { label: 'Tocantins', value: 'TO' },
-
 ];

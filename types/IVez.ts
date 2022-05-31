@@ -11,6 +11,6 @@ type IVez = {
   tipo_veiculo: string;
   chegada: string;
   posicao: number;
-}
+};
 
 export default IVez;

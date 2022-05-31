@@ -1,9 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
-import {
-  StyleSheet, Image, Button, View,
-  SafeAreaView,
-} from 'react-native';
+import { StyleSheet, Image, Button, View, SafeAreaView } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { SvgUri } from 'react-native-svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -28,10 +25,13 @@ function LoginScreen() {
 
   const Login = async () => {
     try {
-      const response = await loginAPi.post<IAuth>('http://www.coopertransc.com.br/api/public/api/login', {
-        username: email,
-        password,
-      });
+      const response = await loginAPi.post<IAuth>(
+        'http://www.coopertransc.com.br/api/public/api/login',
+        {
+          username: email,
+          password,
+        }
+      );
 
       await AsyncStorage.setItem('@storage_Key', JSON.stringify(response.data));
       navigation.navigate('MenuComp');
@@ -57,7 +57,6 @@ function LoginScreen() {
   });
 
   return (
-
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.Logo}>
         <SvgUri
@@ -91,11 +90,15 @@ function LoginScreen() {
           isInvalid={Invalid}
         />
         <View style={styles.loginButton}>
-          <Button title="Entrar" onPress={() => Login()} color="#00433E" disabled={!password && !email} />
+          <Button
+            title="Entrar"
+            onPress={() => Login()}
+            color="#00433E"
+            disabled={!password && !email}
+          />
         </View>
       </View>
     </SafeAreaView>
-
   );
 }
 

@@ -3,21 +3,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons/faBell';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import * as React from 'react';
-import {
-  Pressable, StyleSheet, Text, View,
-} from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import BottomSheet, {
-  BottomSheetView,
-} from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import { BottomSheetMethods } from '@gorhom/bottom-sheet/lib/typescript/types';
 import IAuth from '../../types/IAuth';
 
 type Props = {
-  title?: string
-  sub?: string
-  bottomSheetModalRef?: React.RefObject<BottomSheetMethods>
-}
+  title?: string;
+  sub?: string;
+  bottomSheetModalRef?: React.RefObject<BottomSheetMethods>;
+};
 
 const Menu: React.FC<Props> = ({ title, sub, bottomSheetModalRef }) => {
   const navigation = useNavigation();
@@ -43,40 +39,28 @@ const Menu: React.FC<Props> = ({ title, sub, bottomSheetModalRef }) => {
   }, []);
 
   return (
-    <View
-      style={styles.Container}
-    >
+    <View style={styles.Container}>
       <View style={{ flex: 1 }}>
         <Text style={styles.Name}>{title || `Ola, ${name}!`}</Text>
-        <Text style={styles.Sub}>
-          {sub || 'Bem-vindo(a) novamente'}
-        </Text>
+        <Text style={styles.Sub}>{sub || 'Bem-vindo(a) novamente'}</Text>
       </View>
 
       <View style={styles.Icon}>
         <Pressable onPress={() => navigation.navigate('Avisos')}>
-          <FontAwesomeIcon
-            icon={faBell}
-            size={25}
-            color="black"
-          />
+          <FontAwesomeIcon icon={faBell} size={25} color="black" />
         </Pressable>
       </View>
       <View style={styles.Icon}>
-        <Pressable onPress={() => {
-          if (bottomSheetModalRef) {
-            bottomSheetModalRef.current?.snapToIndex(0);
-          }
-        }}
+        <Pressable
+          onPress={() => {
+            if (bottomSheetModalRef) {
+              bottomSheetModalRef.current?.snapToIndex(0);
+            }
+          }}
         >
-          <FontAwesomeIcon
-            icon={faBars}
-            size={25}
-            color="black"
-          />
+          <FontAwesomeIcon icon={faBars} size={25} color="black" />
         </Pressable>
       </View>
-
     </View>
   );
 };

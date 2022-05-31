@@ -11,8 +11,8 @@ import moment from 'moment';
 import IViagens from '../../types/IViagens';
 
 type Props = {
-  data: IViagens
-}
+  data: IViagens;
+};
 
 const MinhasViagensCard: React.FC<Props> = ({ data }) => {
   const navigation = useNavigation();
@@ -34,29 +34,15 @@ const MinhasViagensCard: React.FC<Props> = ({ data }) => {
     if (status.toLocaleLowerCase() === 'aceita') {
       return (
         <>
-          <FontAwesomeIcon
-            icon={faCheckCircle}
-            size={20}
-            color="green"
-          />
-          <Text style={styles.TitleText}>
-            Aceita
-          </Text>
-
+          <FontAwesomeIcon icon={faCheckCircle} size={20} color="green" />
+          <Text style={styles.TitleText}>Aceita</Text>
         </>
       );
     }
     return (
       <>
-        <FontAwesomeIcon
-          icon={faCircleXmark}
-          size={20}
-          color="red"
-        />
-        <Text style={styles.TitleTextRecursed}>
-          Recusa
-        </Text>
-
+        <FontAwesomeIcon icon={faCircleXmark} size={20} color="red" />
+        <Text style={styles.TitleTextRecursed}>Recusa</Text>
       </>
     );
   };
@@ -64,20 +50,14 @@ const MinhasViagensCard: React.FC<Props> = ({ data }) => {
   return (
     <View style={styles.Container}>
       <View style={styles.Title}>
-        <View style={styles.TitleIcon}>
-          {typeOsStatus(data.escolha)}
-        </View>
-        <Text style={styles.Title}>{data.data_marcacao ? dataFormatter(data.data_marcacao) : ''}</Text>
+        <View style={styles.TitleIcon}>{typeOsStatus(data.escolha)}</View>
+        <Text style={styles.Title}>
+          {data.data_marcacao ? dataFormatter(data.data_marcacao) : ''}
+        </Text>
       </View>
       <View style={styles.Line}>
-        <Text>
-          {`${data.cidade_origem} - ${data.estado_origem}`}
-          {' '}
-        </Text>
-        <Text>
-          {`${data.cidade_destino} - ${data.estado_destino}`}
-          {' '}
-        </Text>
+        <Text>{`${data.cidade_origem} - ${data.estado_origem}`} </Text>
+        <Text>{`${data.cidade_destino} - ${data.estado_destino}`} </Text>
       </View>
       <View style={styles.LineWithRow}>
         <MultiSlider
@@ -91,35 +71,19 @@ const MinhasViagensCard: React.FC<Props> = ({ data }) => {
           allowOverlap
           snapped
         />
-        <Text style={{ marginTop: -20 }}>
-          {data.distancia}
-          {' '}
-          Km
-        </Text>
+        <Text style={{ marginTop: -20 }}>{data.distancia} Km</Text>
       </View>
       <View style={styles.Line}>
-        <Text>
-          Marcou em:
-        </Text>
-        <Text>
-          {dataFormatter(data.data_marcacao)}
-        </Text>
+        <Text>Marcou em:</Text>
+        <Text>{dataFormatter(data.data_marcacao)}</Text>
       </View>
       <View style={styles.Line}>
-        <Text>
-          Viajou em:
-        </Text>
-        <Text>
-          {dataFormatter(data.data_escolha)}
-        </Text>
+        <Text>Viajou em:</Text>
+        <Text>{dataFormatter(data.data_escolha)}</Text>
       </View>
       <View style={styles.Line}>
-        <Text>
-          Diferença em dias:
-        </Text>
-        <Text>
-          {differ(data.data_marcacao, data.data_escolha)}
-        </Text>
+        <Text>Diferença em dias:</Text>
+        <Text>{differ(data.data_marcacao, data.data_escolha)}</Text>
       </View>
     </View>
   );
@@ -166,10 +130,16 @@ const styles = StyleSheet.create({
     color: 'green',
   },
   TitleText: {
-    marginLeft: 5, color: '#00AC00', fontWeight: 'bold', fontSize: 14,
+    marginLeft: 5,
+    color: '#00AC00',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
   TitleTextRecursed: {
-    marginLeft: 5, color: 'red', fontWeight: 'bold', fontSize: 14,
+    marginLeft: 5,
+    color: 'red',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
 });
 

@@ -1,7 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { Component, FC } from 'react';
 import {
-  StyleSheet, Text, View, Image, ImageBackground, FlatList,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ImageBackground,
+  FlatList,
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
@@ -12,8 +17,8 @@ const ImagemFundoUri = Image.resolveAssetSource(ImagemFundo).uri;
 
 type Props = {
   title: string;
-  icon: IconProp
-}
+  icon: IconProp;
+};
 
 const MenuCard: FC<Props> = ({ children, icon, title }) => (
   <View style={styles.BoxContainer}>

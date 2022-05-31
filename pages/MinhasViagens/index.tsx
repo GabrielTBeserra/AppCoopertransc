@@ -1,21 +1,26 @@
-import React, {
-  useMemo, useRef, useState, useEffect,
-} from 'react';
+import React, { useMemo, useRef, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
-  StyleSheet, Text, View, SafeAreaView, FlatList, Pressable, Button,
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  FlatList,
+  Pressable,
+  Button,
 } from 'react-native';
 
-import BottomSheet, {
-  BottomSheetView,
-} from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 
 import moment from 'moment';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter';
 import { useFocusEffect } from '@react-navigation/native';
-import { DateTimePickerAndroid, DateTimePickerEvent } from '@react-native-community/datetimepicker';
+import {
+  DateTimePickerAndroid,
+  DateTimePickerEvent,
+} from '@react-native-community/datetimepicker';
 import { faAlignJustify } from '@fortawesome/free-solid-svg-icons';
 import Header from '../../components/Header';
 import IViagens from '../../types/IViagens';
@@ -25,11 +30,11 @@ import { Estados } from '../../common/base/infos/Arrays';
 import LogoutSheet from '../../components/LogoutSheet/LogoutSheet';
 
 type Post = {
-  data_inicio: string,
-  data_fim: string,
-  estado: string,
-  id: string
-}
+  data_inicio: string;
+  data_fim: string;
+  estado: string;
+  id: string;
+};
 
 function MinhasViagens() {
   const [id, setId] = useState('');
@@ -42,7 +47,7 @@ function MinhasViagens() {
     },
     'http://www.coopertransc.com.br/api/public/api/minhasviagens',
     false,
-    [],
+    []
   );
 
   useEffect(() => {
@@ -70,17 +75,25 @@ function MinhasViagens() {
   // States
   const [estadosOpen, setEstadosOpen] = useState(false);
   const [estado, setEstado] = useState('');
-  const [dataInicio, setDataInicio] = useState(moment().subtract(1, 'month').toDate());
+  const [dataInicio, setDataInicio] = useState(
+    moment().subtract(1, 'month').toDate()
+  );
   const [dataFinal, setDataFinal] = useState(new Date());
 
   // Functions
-  const onChangeInicio = (event: DateTimePickerEvent, selectedDate: Date | undefined) => {
+  const onChangeInicio = (
+    event: DateTimePickerEvent,
+    selectedDate: Date | undefined
+  ) => {
     if (selectedDate) {
       setDataInicio(selectedDate);
     }
   };
 
-  const onChangeFinal = (event: DateTimePickerEvent, selectedDate: Date | undefined) => {
+  const onChangeFinal = (
+    event: DateTimePickerEvent,
+    selectedDate: Date | undefined
+  ) => {
     if (selectedDate) {
       setDataFinal(selectedDate);
     }
@@ -118,36 +131,30 @@ function MinhasViagens() {
   };
 
   return (
-
     <SafeAreaView style={styles.Container}>
-      <Header title="Minhas Viagens" sub=" " bottomSheetModalRef={bottomSheetModalRefHeader} />
+      <Header
+        title="Minhas Viagens"
+        sub=" "
+        bottomSheetModalRef={bottomSheetModalRefHeader}
+      />
       <View style={styles.FilterHeader}>
-        <Pressable onPress={() => {
-          bottomSheetModalRef.current?.snapToIndex(0);
-        }}
+        <Pressable
+          onPress={() => {
+            bottomSheetModalRef.current?.snapToIndex(0);
+          }}
         >
-          <FontAwesomeIcon
-            icon={faFilter}
-            size={20}
-            color="#00433E"
-          />
+          <FontAwesomeIcon icon={faFilter} size={20} color="#00433E" />
         </Pressable>
 
-        <Text style={{ marginLeft: 15 }}>
-          Filtrar
-        </Text>
-
+        <Text style={{ marginLeft: 15 }}>Filtrar</Text>
       </View>
       {viagensList && viagensList?.length > 0 ? (
-
         <FlatList
           data={viagensList}
           style={{ width: '100%' }}
           numColumns={1}
           scrollEnabled
-          renderItem={({ item, index }) => (
-            <MinhasViagensCard data={item} />
-          )}
+          renderItem={({ item, index }) => <MinhasViagensCard data={item} />}
         />
       ) : (
         <View style={styles.NotRegister}>
@@ -203,21 +210,14 @@ function MinhasViagens() {
                 zIndexInverse={500}
               />
             </View>
-
           </View>
           <View style={styles.FilterButton}>
-            <Button
-              onPress={() => filter()}
-              title="Filtrar"
-              color="#00433E"
-            />
+            <Button onPress={() => filter()} title="Filtrar" color="#00433E" />
           </View>
-
         </BottomSheetView>
       </BottomSheet>
       <LogoutSheet bottomSheetModalRef={bottomSheetModalRefHeader} />
     </SafeAreaView>
-
   );
 }
 
@@ -326,7 +326,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-
   },
 });
 

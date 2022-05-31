@@ -1,6 +1,11 @@
 import * as React from 'react';
 import {
-  View, Text, StyleSheet, TextInput, KeyboardTypeOptions, Pressable,
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  KeyboardTypeOptions,
+  Pressable,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -17,7 +22,14 @@ type Props = {
 };
 
 const Login: React.FC<Props> = ({
-  onChangeText, label, value, type, placeholder, isPassword, isInvalid, maxLength,
+  onChangeText,
+  label,
+  value,
+  type,
+  placeholder,
+  isPassword,
+  isInvalid,
+  maxLength,
 }) => {
   const [hidePass, setHidePass] = React.useState(true);
 
@@ -33,7 +45,7 @@ const Login: React.FC<Props> = ({
           maxLength={maxLength}
           secureTextEntry={isPassword && hidePass}
           placeholder={placeholder}
-          onChangeText={(e) => onChangeText(e)}
+          onChangeText={e => onChangeText(e)}
         />
         {isPassword && (
           <Pressable onPress={() => setHidePass(!hidePass)}>

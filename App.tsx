@@ -21,14 +21,8 @@ function App() {
           }}
           initialRouteName="Home"
         >
-          <Stack.Screen
-            name="Home"
-            component={Login}
-          />
-          <Stack.Screen
-            name="MenuComp"
-            component={RoutesComponents}
-          />
+          <Stack.Screen name="Home" component={Login} />
+          <Stack.Screen name="MenuComp" component={RoutesComponents} />
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>
@@ -44,11 +38,9 @@ function RoutesComponents() {
       }}
       initialRouteName="Menu"
     >
-
       {Routes.map((route, index) => (
         <Tab.Screen
           name={route.name}
-
           component={route.Component}
           key={index}
           options={route.options}

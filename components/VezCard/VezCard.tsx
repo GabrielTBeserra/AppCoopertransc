@@ -6,8 +6,8 @@ import { StyleSheet, View, Text } from 'react-native';
 import IVez from '../../types/IVez';
 
 type Props = {
-  data: IVez
-}
+  data: IVez;
+};
 
 const VezCard: React.FC<Props> = ({ data }) => {
   const [isClosed, setIsClosed] = React.useState(true);
@@ -20,16 +20,28 @@ const VezCard: React.FC<Props> = ({ data }) => {
   };
 
   const getBoxColor = (type: string) => {
-    if (type === 'CVB') { return styles.BoxTitleBlue; }
-    if (type === 'CS' || type === 'CV') { return styles.BoxTitleYellow; }
-    if (type === 'TS' || type === 'TB') { return styles.BoxTitleGreen; }
+    if (type === 'CVB') {
+      return styles.BoxTitleBlue;
+    }
+    if (type === 'CS' || type === 'CV') {
+      return styles.BoxTitleYellow;
+    }
+    if (type === 'TS' || type === 'TB') {
+      return styles.BoxTitleGreen;
+    }
     return null;
   };
 
   const getTextColor = (type: string) => {
-    if (type === 'CVB') { return styles.TextStyle; }
-    if (type === 'CS' || type === 'CV') { return styles.TextStyleYellow; }
-    if (type === 'TS' || type === 'TB') { return styles.TextStyle; }
+    if (type === 'CVB') {
+      return styles.TextStyle;
+    }
+    if (type === 'CS' || type === 'CV') {
+      return styles.TextStyleYellow;
+    }
+    if (type === 'TS' || type === 'TB') {
+      return styles.TextStyle;
+    }
     return null;
   };
 
@@ -45,33 +57,25 @@ const VezCard: React.FC<Props> = ({ data }) => {
     <View style={styles.Container}>
       <View style={getBoxColor(data.tipo_veiculo)}>
         <View>
-          <Text style={getTextColor(data.tipo_veiculo)}>{zeroFill(`${data.posicao}`)}</Text>
+          <Text style={getTextColor(data.tipo_veiculo)}>
+            {zeroFill(`${data.posicao}`)}
+          </Text>
         </View>
         <View>
-          <Text style={getTextColor(data.tipo_veiculo)}>{`${dataFormatter(data.data_marcacao)} ${data.hora_marcacao}`}</Text>
+          <Text style={getTextColor(data.tipo_veiculo)}>{`${dataFormatter(
+            data.data_marcacao
+          )} ${data.hora_marcacao}`}</Text>
         </View>
       </View>
       <View style={styles.Content}>
-
         <View style={styles.Line}>
-          <FontAwesomeIcon
-            icon={faUser}
-            size={20}
-            color="#00433E"
-          />
-          <Text>
-            {data.cooperado}
-          </Text>
+          <FontAwesomeIcon icon={faUser} size={20} color="#00433E" />
+          <Text>{data.cooperado}</Text>
         </View>
         <View style={styles.Line}>
-          <Text>
-            Estados:
-          </Text>
-          <Text style={styles.TextWrap}>
-            {data.estados}
-          </Text>
+          <Text>Estados:</Text>
+          <Text style={styles.TextWrap}>{data.estados}</Text>
         </View>
-
       </View>
     </View>
   );
@@ -128,10 +132,16 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   TitleText: {
-    marginLeft: 5, color: '#00AC00', fontWeight: 'bold', fontSize: 14,
+    marginLeft: 5,
+    color: '#00AC00',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
   TitleTextRecursed: {
-    marginLeft: 5, color: 'red', fontWeight: 'bold', fontSize: 14,
+    marginLeft: 5,
+    color: 'red',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
   BoxTitleBlue: {
     borderTopRightRadius: 5,

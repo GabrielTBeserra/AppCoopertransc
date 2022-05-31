@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-  StyleSheet, SafeAreaView, FlatList, View, Text,
-} from 'react-native';
+import { StyleSheet, SafeAreaView, FlatList, View, Text } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
 import BottomSheet from '@gorhom/bottom-sheet';
@@ -13,8 +11,13 @@ import Classify from '../../workers/VeiculoClassify';
 import LogoutSheet from '../../components/LogoutSheet/LogoutSheet';
 
 function Ver() {
-  const [vezList] = useGet<Array<IVez>>('http://www.coopertransc.com.br/api/public/api/vez', true);
-  const [listaClissificada, setListaClissificada] = React.useState<Array<IVez>>([]);
+  const [vezList] = useGet<Array<IVez>>(
+    'http://www.coopertransc.com.br/api/public/api/vez',
+    true
+  );
+  const [listaClissificada, setListaClissificada] = React.useState<Array<IVez>>(
+    []
+  );
   const bottomSheetModalRef = React.useRef<BottomSheet>(null);
 
   React.useEffect(() => {
@@ -28,30 +31,22 @@ function Ver() {
 
   return (
     <SafeAreaView style={styles.Container}>
-      <Header title="Vez" sub="Disponível para Carregamento Imediato" bottomSheetModalRef={bottomSheetModalRef} />
+      <Header
+        title="Vez"
+        sub="Disponível para Carregamento Imediato"
+        bottomSheetModalRef={bottomSheetModalRef}
+      />
       <View style={styles.HeaderInfo}>
         <View style={styles.Icon}>
-          <FontAwesomeIcon
-            icon={faCircle}
-            size={20}
-            color="#00AC00"
-          />
+          <FontAwesomeIcon icon={faCircle} size={20} color="#00AC00" />
           <Text style={styles.AjustText}>Truck</Text>
         </View>
         <View style={styles.Icon}>
-          <FontAwesomeIcon
-            icon={faCircle}
-            size={20}
-            color="#FFF000"
-          />
+          <FontAwesomeIcon icon={faCircle} size={20} color="#FFF000" />
           <Text style={styles.AjustText}>Carreta</Text>
         </View>
         <View style={styles.Icon}>
-          <FontAwesomeIcon
-            icon={faCircle}
-            size={20}
-            color="#5F95F0"
-          />
+          <FontAwesomeIcon icon={faCircle} size={20} color="#5F95F0" />
           <Text style={styles.AjustText}>Bitrem</Text>
         </View>
       </View>
@@ -60,9 +55,7 @@ function Ver() {
         style={{ width: '100%' }}
         numColumns={1}
         scrollEnabled
-        renderItem={({ item }) => (
-          <VezCard data={item} />
-        )}
+        renderItem={({ item }) => <VezCard data={item} />}
       />
       <LogoutSheet bottomSheetModalRef={bottomSheetModalRef} />
     </SafeAreaView>
