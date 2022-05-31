@@ -1,5 +1,7 @@
-import React, { useMemo, useRef, useState } from 'react';
-
+import React, {
+  useMemo, useRef, useState, useEffect,
+} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   StyleSheet, Text, View, SafeAreaView, FlatList, Pressable, Button,
 } from 'react-native';
@@ -14,11 +16,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter';
 import { useFocusEffect } from '@react-navigation/native';
 import { DateTimePickerAndroid, DateTimePickerEvent } from '@react-native-community/datetimepicker';
+import { faAlignJustify } from '@fortawesome/free-solid-svg-icons';
 import Header from '../../components/Header';
 import IViagens from '../../types/IViagens';
 import MinhasViagensCard from '../../components/MinhasViagensCard/MinhasViagensCard';
 import { usePost } from '../../hooks/useFetch';
 import { Estados } from '../../common/base/infos/Arrays';
+import LogoutSheet from '../../components/LogoutSheet/LogoutSheet';
 
 type Post = {
   data_inicio: string,
@@ -28,19 +32,39 @@ type Post = {
 }
 
 function MinhasViagens() {
+  const [id, setId] = useState('');
   const [viagensList, resendRequest] = usePost<Post, Array<IViagens>>(
     {
       data_inicio: '01/03/2021',
       data_fim: '30/03/2022',
       estado: '',
-      id: '219',
+      id: `${id}`,
     },
-    'http://www.coopertransc.com.br/intranet/api/src/public/minhasviagens',
-    true,
+    'http://www.coopertransc.com.br/api/public/api/minhasviagens',
+    false,
+    [],
   );
+
+  useEffect(() => {
+    loadIdFromUser();
+  }, []);
+
+  const loadIdFromUser = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@storage_Key');
+
+      if (value !== null) {
+        const jsonValue = JSON.parse(value);
+        setId(jsonValue.id);
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
 
   // Refs and Memo
   const bottomSheetModalRef = useRef<BottomSheet>(null);
+  const bottomSheetModalRefHeader = React.useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ['60%'], []);
 
   // States
@@ -67,7 +91,7 @@ function MinhasViagens() {
       data_inicio: moment(dataInicio).format('DD/MM/YYYY'),
       data_fim: moment(dataFinal).format('DD/MM/YYYY'),
       estado,
-      id: '219',
+      id: `${id}`,
     });
 
     bottomSheetModalRef.current?.close();
@@ -96,7 +120,7 @@ function MinhasViagens() {
   return (
 
     <SafeAreaView style={styles.Container}>
-      <Header title="Minhas Viagens" sub="NOME DO CAMINHÃO" />
+      <Header title="Minhas Viagens" sub=" " bottomSheetModalRef={bottomSheetModalRefHeader} />
       <View style={styles.FilterHeader}>
         <Pressable onPress={() => {
           bottomSheetModalRef.current?.snapToIndex(0);
@@ -114,15 +138,22 @@ function MinhasViagens() {
         </Text>
 
       </View>
-      <FlatList
-        data={viagensList}
-        style={{ width: '100%' }}
-        numColumns={1}
-        scrollEnabled
-        renderItem={({ item, index }) => (
-          <MinhasViagensCard data={item} />
-        )}
-      />
+      {viagensList && viagensList?.length > 0 ? (
+
+        <FlatList
+          data={viagensList}
+          style={{ width: '100%' }}
+          numColumns={1}
+          scrollEnabled
+          renderItem={({ item, index }) => (
+            <MinhasViagensCard data={item} />
+          )}
+        />
+      ) : (
+        <View style={styles.NotRegister}>
+          <Text>Não há registros para o filtro selecionado.</Text>
+        </View>
+      )}
 
       <BottomSheet
         snapPoints={snapPoints}
@@ -184,7 +215,7 @@ function MinhasViagens() {
 
         </BottomSheetView>
       </BottomSheet>
-
+      <LogoutSheet bottomSheetModalRef={bottomSheetModalRefHeader} />
     </SafeAreaView>
 
   );
@@ -290,6 +321,12 @@ const styles = StyleSheet.create({
   FilterButton: {
     marginHorizontal: 15,
     marginTop: 15,
+  },
+  NotRegister: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+
   },
 });
 

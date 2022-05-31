@@ -6,18 +6,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
 import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
+import BottomSheet from '@gorhom/bottom-sheet';
 import { useGet } from '../../hooks/useFetch';
 import Header from '../../components/Header';
 import IViagens from '../../types/IViagens';
 import ViagensCard from '../../components/ViagensCard';
+import LogoutSheet from '../../components/LogoutSheet/LogoutSheet';
 
 function Viagens() {
-  const [viagensList, resendRequest] = useGet<Array<IViagens>>('http://www.coopertransc.com.br/intranet/api/src/public/viagens', true, []);
+  const [viagensList, resendRequest] = useGet<Array<IViagens>>('http://www.coopertransc.com.br/api/public/api/viagens', true, []);
   const navigation = useNavigation();
+  const bottomSheetModalRef = React.useRef<BottomSheet>(null);
 
   return (
     <SafeAreaView style={styles.Container}>
-      <Header title="Viagens" sub="Relatório das últimas 48 horas" />
+      <Header title="Viagens" sub="Relatório das últimas 48 horas" bottomSheetModalRef={bottomSheetModalRef} />
       <View style={styles.Datas}>
         <Text>
           De
@@ -44,6 +47,7 @@ function Viagens() {
           <ViagensCard data={item} />
         )}
       />
+      <LogoutSheet bottomSheetModalRef={bottomSheetModalRef} />
     </SafeAreaView>
 
   );

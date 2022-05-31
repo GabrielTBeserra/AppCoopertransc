@@ -15,6 +15,8 @@
     "@fortawesome/react-native-fontawesome": "^0.2.7",
     "@gorhom/bottom-sheet": "4",
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
+    "@react-native-async-storage/async-storage": "^1.17.5",
+    "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/datetimepicker": "6.1.2",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/drawer": "^6.4.1",
@@ -42,7 +44,8 @@
     "react-native-webview": "11.18.1",
     "react-spring": "^9.4.5",
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",
-    "rn-range-slider": "^2.1.1"
+    "rn-range-slider": "^2.1.1",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -51,6 +54,7 @@
     "@types/react-native-multi-slider": "^0.3.2",
     "@types/react-native-vector-icons": "^6.4.10",
     "@types/styled-components": "^5.1.25",
+    "@types/styled-components-react-native": "^5.1.3",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
     "eslint": "^7.32.0 || ^8.2.0",

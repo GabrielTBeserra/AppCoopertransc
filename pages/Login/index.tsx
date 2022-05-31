@@ -1,21 +1,60 @@
 import * as React from 'react';
+import axios from 'axios';
 import {
   StyleSheet, Image, Button, View,
   SafeAreaView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { SvgUri } from 'react-native-svg';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import IAuth from '../../types/IAuth';
 import Input from '../../components/Input';
+import loginAPi from '../../common/base/service/loginApi';
 
 const ImagemFundo = require('../../assets/images/logo.svg');
 
 const ImagemFundoUri = Image.resolveAssetSource(ImagemFundo).uri;
 
-function Login() {
+function LoginScreen() {
   const navigation = useNavigation();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [Invalid, setInvalid] = React.useState(false);
+
+  // useFocusEffect(() => {
+  //   setEmail('');
+  //   setPassword('');
+  // });
+
+  const Login = async () => {
+    try {
+      const response = await loginAPi.post<IAuth>('http://www.coopertransc.com.br/api/public/api/login', {
+        username: email,
+        password,
+      });
+
+      await AsyncStorage.setItem('@storage_Key', JSON.stringify(response.data));
+      navigation.navigate('MenuComp');
+    } catch (e) {
+      setInvalid(true);
+    }
+  };
+
+  const loadFromStorage = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@storage_Key');
+
+      if (value !== null) {
+        navigation.navigate('MenuComp');
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+
+  useFocusEffect(() => {
+    loadFromStorage();
+  });
 
   return (
 
@@ -38,6 +77,8 @@ function Login() {
           onChangeText={(text: string) => {
             setEmail(text);
           }}
+          isInvalid={Invalid}
+          maxLength={14}
         />
         <Input
           value={password}
@@ -47,9 +88,10 @@ function Login() {
           onChangeText={(text: string) => {
             setPassword(text);
           }}
+          isInvalid={Invalid}
         />
         <View style={styles.loginButton}>
-          <Button title="Entrar" onPress={() => navigation.navigate('MenuComp')} color="#00433E" />
+          <Button title="Entrar" onPress={() => Login()} color="#00433E" disabled={!password && !email} />
         </View>
       </View>
     </SafeAreaView>
@@ -80,4 +122,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default LoginScreen;

@@ -3,17 +3,20 @@ import * as React from 'react';
 import {
   StyleSheet, FlatList, View, Pressable,
 } from 'react-native';
+import BottomSheet from '@gorhom/bottom-sheet';
 import MenuCard from '../../components/MenuCard';
 
 import Header from '../../components/Header';
 import menu from './menu';
+import LogoutSheet from '../../components/LogoutSheet/LogoutSheet';
 
 function Menu() {
   const navigation = useNavigation();
+  const bottomSheetModalRef = React.useRef<BottomSheet>(null);
 
   return (
     <View style={styles.Container}>
-      <Header />
+      <Header bottomSheetModalRef={bottomSheetModalRef} />
       <FlatList
         data={menu}
         numColumns={2}
@@ -26,6 +29,7 @@ function Menu() {
           </Pressable>
         )}
       />
+      <LogoutSheet bottomSheetModalRef={bottomSheetModalRef} />
     </View>
   );
 }
