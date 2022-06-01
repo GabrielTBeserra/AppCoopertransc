@@ -1,3 +1,5 @@
+name: Deploy
+
 on:
   push:
     branches:
@@ -26,4 +28,4 @@ jobs:
         run: yarn install
 
       - name: 🚀 Build app
-        run: eas build --non-interactive --platform android
+        run: expo build:android
