@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import {
+  StyleSheet, Text, View, FlatList, SafeAreaView,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { useGet } from '../../hooks/useFetch';
@@ -13,7 +15,7 @@ function Avisos() {
   const [avisos] = useGet<Array<IAviso>>(
     'http://www.coopertransc.com.br/api/public/api/avisos',
     true,
-    []
+    [],
   );
   const bottomSheetModalRef = React.useRef<BottomSheet>(null);
   return (
