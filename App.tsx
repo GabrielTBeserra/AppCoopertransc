@@ -7,8 +7,13 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Routes from './routes';
 import Login from './pages/Login';
 
+export type RootStackParamList = {
+  Home: undefined;
+  MenuComp: undefined;
+};
+
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
   return (

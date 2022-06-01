@@ -1,13 +1,14 @@
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons/faBell';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import * as React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import { BottomSheetMethods } from '@gorhom/bottom-sheet/lib/typescript/types';
 import IAuth from '../../types/IAuth';
+
+import styles from './styles';
 
 type Props = {
   title?: string;
@@ -18,7 +19,6 @@ type Props = {
 const Menu: React.FC<Props> = ({ title, sub, bottomSheetModalRef }) => {
   const navigation = useNavigation();
   const [name, setName] = React.useState('');
-  // Refs and Memo
 
   const loadFromStorage = async () => {
     try {
@@ -64,32 +64,5 @@ const Menu: React.FC<Props> = ({ title, sub, bottomSheetModalRef }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  Container: {
-    flexDirection: 'row',
-    marginTop: 40,
-    marginBottom: 10,
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    margin: 15,
-  },
-  loginButton: {
-    margin: 10,
-  },
-  Inputs: {
-    marginTop: 15,
-  },
-  Name: {
-    color: '#00433E',
-    fontSize: 23,
-    fontWeight: 'bold',
-  },
-  Sub: {
-    color: 'gray',
-    fontSize: 13,
-  },
-  Icon: { margin: 5 },
-});
 
 export default Menu;
