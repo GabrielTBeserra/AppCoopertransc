@@ -5,7 +5,7 @@ import defaultApi from '../common/base/service/mainApi';
 export const useGet = <T>(
   initialUrl: string | undefined = undefined,
   onLoadRequest: boolean | undefined = undefined,
-  initialValue: T | undefined = undefined
+  initialValue: T | undefined = undefined,
 ) => {
   const [state, setState] = useState<T | undefined>(initialValue);
 
@@ -41,7 +41,7 @@ export const usePost = <T, K>(
   value: T | undefined,
   initialUrl: string | undefined = undefined,
   onLoadRequest: boolean | undefined = undefined,
-  initialValue: K | undefined = undefined
+  initialValue: K | undefined = undefined,
 ) => {
   const [state, setState] = useState<K | undefined>(initialValue);
 
@@ -70,7 +70,7 @@ export const usePost = <T, K>(
         setState(resp.data);
       }
     },
-    []
+    [],
   );
 
   return [state, request] as const;

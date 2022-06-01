@@ -66,8 +66,14 @@ const ViagensCard: React.FC<Props> = ({ data }) => {
         <Text style={{ marginLeft: 5 }}>{data.descricao}</Text>
       </View>
       <View style={styles.Line}>
-        <Text>{`${data.cidade_origem} - ${data.estado_origem}`} </Text>
-        <Text>{`${data.cidade_destino} - ${data.estado_destino}`} </Text>
+        <Text>
+          {`${data.cidade_origem} - ${data.estado_origem}`}
+          {' '}
+        </Text>
+        <Text>
+          {`${data.cidade_destino} - ${data.estado_destino}`}
+          {' '}
+        </Text>
       </View>
       <View style={styles.LineWithRow}>
         <MultiSlider
@@ -81,7 +87,11 @@ const ViagensCard: React.FC<Props> = ({ data }) => {
           allowOverlap
           snapped
         />
-        <Text style={{ marginTop: -20 }}>{data.distancia} Km</Text>
+        <Text style={{ marginTop: -20 }}>
+          {data.distancia}
+          {' '}
+          Km
+        </Text>
       </View>
       <View style={styles.Line}>
         <Text>Marcou em:</Text>

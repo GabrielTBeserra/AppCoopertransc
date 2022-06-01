@@ -5,7 +5,7 @@ const Classify = (data: Array<IVez>) => {
   let counterCs = 0;
   let counterCvb = 0;
 
-  const teste = data.map(x => {
+  const teste = data.map((x) => {
     let tipo = '';
     if (x.tipo_veiculo === 'CVB') {
       tipo = 'CVB';

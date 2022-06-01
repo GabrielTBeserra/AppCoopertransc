@@ -4,12 +4,12 @@ import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 import { faHouse } from '@fortawesome/free-solid-svg-icons/faHouse';
 import { faVanShuttle } from '@fortawesome/free-solid-svg-icons/faVanShuttle';
 
-import IRoute from './types/IRoute';
-import Menu from './pages/Menu';
-import Vez from './pages/Vez';
-import Avisos from './pages/Avisos';
-import Viagens from './pages/Viagens';
-import MinhasViagens from './pages/MinhasViagens';
+import IRoute from './src/types/IRoute';
+import Menu from './src/pages/Menu';
+import Vez from './src/pages/Vez';
+import Avisos from './src/pages/Avisos';
+import Viagens from './src/pages/Viagens';
+import MinhasViagens from './src/pages/MinhasViagens';
 
 const Routes: Array<IRoute> = [
   {
@@ -17,7 +17,7 @@ const Routes: Array<IRoute> = [
     name: 'Menu',
     options: {
       unmountOnBlur: true,
-      tabBarIcon: tabInfo => (
+      tabBarIcon: (tabInfo) => (
         <FontAwesomeIcon
           icon={faHouse}
           size={20}
@@ -32,7 +32,7 @@ const Routes: Array<IRoute> = [
     options: {
       tabBarItemStyle: { display: 'none' },
       unmountOnBlur: true,
-      tabBarIcon: tabInfo => (
+      tabBarIcon: (tabInfo) => (
         <FontAwesomeIcon
           icon={faUserGroup}
           size={20}
@@ -46,7 +46,7 @@ const Routes: Array<IRoute> = [
     name: 'Vez',
     options: {
       unmountOnBlur: true,
-      tabBarIcon: tabInfo => (
+      tabBarIcon: (tabInfo) => (
         <FontAwesomeIcon
           icon={faUserGroup}
           size={20}
@@ -60,7 +60,7 @@ const Routes: Array<IRoute> = [
     name: 'Viagens',
     options: {
       unmountOnBlur: true,
-      tabBarIcon: tabInfo => (
+      tabBarIcon: (tabInfo) => (
         <FontAwesomeIcon
           icon={faTruck}
           size={20}
@@ -74,7 +74,7 @@ const Routes: Array<IRoute> = [
     name: 'MinhasViagens',
     options: {
       unmountOnBlur: true,
-      tabBarIcon: tabInfo => (
+      tabBarIcon: (tabInfo) => (
         <FontAwesomeIcon
           icon={faVanShuttle}
           size={20}
