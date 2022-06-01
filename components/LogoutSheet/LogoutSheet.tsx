@@ -2,10 +2,12 @@ import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import * as React from 'react';
 import { BottomSheetMethods } from '@gorhom/bottom-sheet/lib/typescript/types';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Button, Pressable, View, Text, StyleSheet } from 'react-native';
+import { Pressable, View, Text } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons/faRightFromBracket';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import styles from './styles';
 
 type Props = {
   bottomSheetModalRef: React.RefObject<BottomSheetMethods>;
@@ -18,7 +20,7 @@ const LogoutSheet: React.FC<Props> = ({ bottomSheetModalRef }) => {
   const loggout = async () => {
     await AsyncStorage.clear();
     bottomSheetModalRef.current?.close();
-    navigation.navigate('Home');
+    navigation.navigate('Home' as never);
   };
 
   return (
@@ -52,20 +54,5 @@ const LogoutSheet: React.FC<Props> = ({ bottomSheetModalRef }) => {
     </BottomSheet>
   );
 };
-
-const styles = StyleSheet.create({
-  LogoutSheet: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  LoggoutOpton: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    padding: 15,
-    alignItems: 'center',
-  },
-});
 
 export default LogoutSheet;

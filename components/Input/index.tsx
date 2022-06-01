@@ -2,13 +2,14 @@ import * as React from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   KeyboardTypeOptions,
   Pressable,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import styles from './styles';
 
 type Props = {
   onChangeText: (text: string) => void;
@@ -60,41 +61,5 @@ const Login: React.FC<Props> = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  Container: {
-    padding: 10,
-  },
-  Input: {
-    alignSelf: 'stretch',
-    padding: 10,
-    fontSize: 22,
-    width: '90%',
-  },
-
-  Label: {
-    marginBottom: 10,
-    color: '#00433E',
-    fontWeight: 'bold',
-  },
-  InputFull: {
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: '#00433E',
-  },
-  InputInvalid: {
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: 'red',
-  },
-});
 
 export default Login;
