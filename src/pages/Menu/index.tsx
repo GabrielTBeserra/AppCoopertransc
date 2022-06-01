@@ -1,8 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
-import {
-  StyleSheet, FlatList, View, Pressable,
-} from 'react-native';
+import { StyleSheet, FlatList, View, Pressable } from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import MenuCard from '../../components/MenuCard';
 

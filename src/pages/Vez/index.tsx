@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-  StyleSheet, SafeAreaView, FlatList, View, Text,
-} from 'react-native';
+import { StyleSheet, SafeAreaView, FlatList, View, Text } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
 import BottomSheet from '@gorhom/bottom-sheet';
@@ -15,10 +13,10 @@ import LogoutSheet from '../../components/LogoutSheet/LogoutSheet';
 function Ver() {
   const [vezList] = useGet<Array<IVez>>(
     'http://www.coopertransc.com.br/api/public/api/vez',
-    true,
+    true
   );
   const [listaClissificada, setListaClissificada] = React.useState<Array<IVez>>(
-    [],
+    []
   );
   const bottomSheetModalRef = React.useRef<BottomSheet>(null);
 

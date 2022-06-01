@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-  StyleSheet, Text, View, SafeAreaView, FlatList,
-} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
 import { useNavigation } from '@react-navigation/native';
@@ -17,7 +15,7 @@ function Viagens() {
   const [viagensList, resendRequest] = useGet<Array<IViagens>>(
     'http://www.coopertransc.com.br/api/public/api/viagens',
     true,
-    [],
+    []
   );
   const navigation = useNavigation();
   const bottomSheetModalRef = React.useRef<BottomSheet>(null);
@@ -30,17 +28,9 @@ function Viagens() {
         bottomSheetModalRef={bottomSheetModalRef}
       />
       <View style={styles.Datas}>
-        <Text>
-          De
-          {' '}
-          {moment().subtract(2, 'days').format('DD/MM/YYYY')}
-        </Text>
+        <Text>De {moment().subtract(2, 'days').format('DD/MM/YYYY')}</Text>
         <FontAwesomeIcon icon={faArrowRight} size={20} color="orange" />
-        <Text>
-          Até
-          {' '}
-          {moment().format('DD/MM/YYYY')}
-        </Text>
+        <Text>Até {moment().format('DD/MM/YYYY')}</Text>
       </View>
       <FlatList
         data={viagensList}
