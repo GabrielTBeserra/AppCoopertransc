@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Routes from './routes';
-import Login from './pages/Login';
+import Login from './src/pages/Login';
 
 export type RootStackParamList = {
   Home: undefined;

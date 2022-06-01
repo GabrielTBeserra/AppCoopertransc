@@ -4,12 +4,12 @@ import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 import { faHouse } from '@fortawesome/free-solid-svg-icons/faHouse';
 import { faVanShuttle } from '@fortawesome/free-solid-svg-icons/faVanShuttle';
 
-import IRoute from './types/IRoute';
-import Menu from './pages/Menu';
-import Vez from './pages/Vez';
-import Avisos from './pages/Avisos';
-import Viagens from './pages/Viagens';
-import MinhasViagens from './pages/MinhasViagens';
+import IRoute from './src/types/IRoute';
+import Menu from './src/pages/Menu';
+import Vez from './src/pages/Vez';
+import Avisos from './src/pages/Avisos';
+import Viagens from './src/pages/Viagens';
+import MinhasViagens from './src/pages/MinhasViagens';
 
 const Routes: Array<IRoute> = [
   {
