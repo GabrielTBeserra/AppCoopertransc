@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-  StyleSheet, Image, ScrollView, View, Button,
-} from 'react-native';
+import { StyleSheet, Image, ScrollView, View, Button } from 'react-native';
 
 type Props = {
   title: string;

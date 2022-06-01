@@ -46,7 +46,7 @@ const Login: React.FC<Props> = ({
           maxLength={maxLength}
           secureTextEntry={isPassword && hidePass}
           placeholder={placeholder}
-          onChangeText={(e) => onChangeText(e)}
+          onChangeText={e => onChangeText(e)}
         />
         {isPassword && (
           <Pressable onPress={() => setHidePass(!hidePass)}>

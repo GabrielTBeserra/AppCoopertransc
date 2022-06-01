@@ -65,10 +65,7 @@ const VezCard: React.FC<Props> = ({ data }) => {
         </View>
         <View>
           <Text style={getTextColor(data.tipo_veiculo)}>
-            {`${dataFormatter(
-              data.data_marcacao,
-            )} ${data.hora_marcacao}`}
-
+            {`${dataFormatter(data.data_marcacao)} ${data.hora_marcacao}`}
           </Text>
         </View>
       </View>
