@@ -28,6 +28,11 @@ const Routes: Array<IMenuRoute> = [
     icon: faMapLocation,
     navigateTo: 'Viagens',
   },
+  {
+    name: 'Arquivos',
+    icon: faMapLocation,
+    navigateTo: 'Arquivos',
+  },
 ];
 
 export default Routes;

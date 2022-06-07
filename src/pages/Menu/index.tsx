@@ -1,6 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
-import { StyleSheet, FlatList, View, Pressable } from 'react-native';
+import {
+  StyleSheet, FlatList, View, Pressable,
+} from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import MenuCard from '../../components/MenuCard';
 
@@ -21,7 +23,7 @@ function Menu() {
         scrollEnabled={false}
         listKey="BrowseCategories"
         renderItem={({ item, index }) => (
-          <Pressable onPress={() => navigation.navigate(item.navigateTo)}>
+          <Pressable onPress={() => navigation.navigate(item.navigateTo as never)}>
             <MenuCard title={item.name} icon={item.icon} />
           </Pressable>
         )}
