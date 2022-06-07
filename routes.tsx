@@ -18,7 +18,7 @@ const Routes: Array<IRoute> = [
     name: 'Menu',
     options: {
       unmountOnBlur: true,
-      tabBarIcon: (tabInfo) => (
+      tabBarIcon: tabInfo => (
         <FontAwesomeIcon
           icon={faHouse}
           size={20}
@@ -33,7 +33,7 @@ const Routes: Array<IRoute> = [
     options: {
       tabBarItemStyle: { display: 'none' },
       unmountOnBlur: true,
-      tabBarIcon: (tabInfo) => (
+      tabBarIcon: tabInfo => (
         <FontAwesomeIcon
           icon={faUserGroup}
           size={20}
@@ -47,7 +47,7 @@ const Routes: Array<IRoute> = [
     name: 'Vez',
     options: {
       unmountOnBlur: true,
-      tabBarIcon: (tabInfo) => (
+      tabBarIcon: tabInfo => (
         <FontAwesomeIcon
           icon={faUserGroup}
           size={20}
@@ -61,7 +61,7 @@ const Routes: Array<IRoute> = [
     name: 'Viagens',
     options: {
       unmountOnBlur: true,
-      tabBarIcon: (tabInfo) => (
+      tabBarIcon: tabInfo => (
         <FontAwesomeIcon
           icon={faTruck}
           size={20}
@@ -75,7 +75,7 @@ const Routes: Array<IRoute> = [
     name: 'MinhasViagens',
     options: {
       unmountOnBlur: true,
-      tabBarIcon: (tabInfo) => (
+      tabBarIcon: tabInfo => (
         <FontAwesomeIcon
           icon={faVanShuttle}
           size={20}
@@ -90,7 +90,7 @@ const Routes: Array<IRoute> = [
     options: {
       tabBarItemStyle: { display: 'none' },
       unmountOnBlur: true,
-      tabBarIcon: (tabInfo) => (
+      tabBarIcon: tabInfo => (
         <FontAwesomeIcon
           icon={faUserGroup}
           size={20}
