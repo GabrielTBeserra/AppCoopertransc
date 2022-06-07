@@ -1,4 +1,6 @@
-import React, { useMemo, useRef, useState, useEffect } from 'react';
+import React, {
+  useMemo, useRef, useState, useEffect,
+} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   StyleSheet,
@@ -47,7 +49,7 @@ function MinhasViagens() {
     },
     'http://www.coopertransc.com.br/api/public/api/minhasviagens',
     false,
-    []
+    [],
   );
 
   useEffect(() => {
@@ -76,14 +78,14 @@ function MinhasViagens() {
   const [estadosOpen, setEstadosOpen] = useState(false);
   const [estado, setEstado] = useState('');
   const [dataInicio, setDataInicio] = useState(
-    moment().subtract(1, 'month').toDate()
+    moment().subtract(1, 'month').toDate(),
   );
   const [dataFinal, setDataFinal] = useState(new Date());
 
   // Functions
   const onChangeInicio = (
     event: DateTimePickerEvent,
-    selectedDate: Date | undefined
+    selectedDate: Date | undefined,
   ) => {
     if (selectedDate) {
       setDataInicio(selectedDate);
@@ -92,7 +94,7 @@ function MinhasViagens() {
 
   const onChangeFinal = (
     event: DateTimePickerEvent,
-    selectedDate: Date | undefined
+    selectedDate: Date | undefined,
   ) => {
     if (selectedDate) {
       setDataFinal(selectedDate);
