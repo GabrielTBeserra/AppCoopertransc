@@ -46,7 +46,7 @@ const Menu: React.FC<Props> = ({ title, sub, bottomSheetModalRef }) => {
       </View>
 
       <View style={styles.Icon}>
-        <Pressable onPress={() => navigation.navigate('Avisos')}>
+        <Pressable onPress={() => navigation.navigate('Avisos' as never)}>
           <FontAwesomeIcon icon={faBell} size={25} color="black" />
         </Pressable>
       </View>
