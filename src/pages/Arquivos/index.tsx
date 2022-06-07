@@ -1,6 +1,14 @@
 import * as React from 'react';
 import {
-  StyleSheet, Text, View, Button, Image, TouchableOpacity, Pressable, FlatList, ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  TouchableOpacity,
+  Pressable,
+  FlatList,
+  ScrollView,
 } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
@@ -24,7 +32,10 @@ function Arquivos() {
   const [hasPermission, setHasPermission] = React.useState<string>('');
   const snapPoints = React.useMemo(() => ['20%'], []);
   const [type, setType] = React.useState(CameraType.back);
-  const [state, request] = useGet('http://www.coopertransc.com.br/api/public/api/minhasviagens/atual/{id}', false);
+  const [state, request] = useGet(
+    'http://www.coopertransc.com.br/api/public/api/minhasviagens/atual/{id}',
+    false
+  );
 
   React.useEffect(() => {
     console.log(state);
@@ -40,7 +51,9 @@ function Arquivos() {
 
       if (value !== null) {
         const jsonValue = JSON.parse(value);
-        request(`http://www.coopertransc.com.br/api/public/api/minhasviagens/atual/${jsonValue.id}`);
+        request(
+          `http://www.coopertransc.com.br/api/public/api/minhasviagens/atual/${jsonValue.id}`
+        );
       }
     } catch (e) {
       // error reading value
@@ -57,7 +70,7 @@ function Arquivos() {
 
     if (!result.cancelled) {
       setImage(result.uri);
-      setImages((x) => [...x, result.uri]);
+      setImages(x => [...x, result.uri]);
     }
   };
 
@@ -89,13 +102,17 @@ function Arquivos() {
         bottomSheetModalRef={bottomSheetModalRef}
       />
 
-      <Button title="Adicionar nova" onPress={() => bottomSheetModalButtons.current?.snapToIndex(0)} />
+      <Button
+        title="Adicionar nova"
+        onPress={() => bottomSheetModalButtons.current?.snapToIndex(0)}
+      />
 
-      <View style={{
-        flexDirection: 'column',
-        alignItems: 'center',
-        flex: 1,
-      }}
+      <View
+        style={{
+          flexDirection: 'column',
+          alignItems: 'center',
+          flex: 1,
+        }}
       >
         <ScrollView>
           <FlatList
@@ -105,7 +122,10 @@ function Arquivos() {
             listKey="BrowseCategories"
             renderItem={({ item, index }) => (
               <View style={{ margin: 5 }}>
-                <Image source={{ uri: item }} style={{ height: 250, width: 150 }} />
+                <Image
+                  source={{ uri: item }}
+                  style={{ height: 250, width: 150 }}
+                />
               </View>
             )}
           />
@@ -119,7 +139,9 @@ function Arquivos() {
         index={-1}
       >
         <BottomSheetView focusHook={useFocusEffect}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+          <View
+            style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}
+          >
             <Pressable
               style={{
                 backgroundColor: '#00433E',
@@ -128,12 +150,7 @@ function Arquivos() {
               }}
               onPress={teste}
             >
-              <FontAwesomeIcon
-                icon={faCamera}
-                size={60}
-                color="white"
-              />
-
+              <FontAwesomeIcon icon={faCamera} size={60} color="white" />
             </Pressable>
             <Pressable
               style={{
@@ -143,14 +160,8 @@ function Arquivos() {
               }}
               onPress={pickImage}
             >
-              <FontAwesomeIcon
-                icon={faFolder}
-                size={60}
-                color="white"
-              />
-
+              <FontAwesomeIcon icon={faFolder} size={60} color="white" />
             </Pressable>
-
           </View>
         </BottomSheetView>
       </BottomSheet>
