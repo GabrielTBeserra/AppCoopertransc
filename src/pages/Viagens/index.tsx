@@ -1,6 +1,10 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
+import {
+  StyleSheet, Text, View, SafeAreaView, FlatList,
+
+} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
 import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
@@ -15,8 +19,9 @@ function Viagens() {
   const [viagensList, resendRequest] = useGet<Array<IViagens>>(
     'http://www.coopertransc.com.br/api/public/api/viagens',
     true,
-    []
+    [],
   );
+
   const navigation = useNavigation();
   const bottomSheetModalRef = React.useRef<BottomSheet>(null);
 
@@ -28,9 +33,31 @@ function Viagens() {
         bottomSheetModalRef={bottomSheetModalRef}
       />
       <View style={styles.Datas}>
-        <Text>De {moment().subtract(2, 'days').format('DD/MM/YYYY')}</Text>
+        <Text>
+          De
+          {' '}
+          {moment().subtract(2, 'days').format('DD/MM/YYYY')}
+        </Text>
         <FontAwesomeIcon icon={faArrowRight} size={20} color="orange" />
-        <Text>Até {moment().format('DD/MM/YYYY')}</Text>
+        <Text>
+          Até
+          {' '}
+          {moment().format('DD/MM/YYYY')}
+        </Text>
+      </View>
+      <View style={styles.HeaderInfo}>
+        <View style={styles.Icon}>
+          <FontAwesomeIcon icon={faCircle} size={20} color="#00AC00" />
+          <Text style={styles.AjustText}>Truck</Text>
+        </View>
+        <View style={styles.Icon}>
+          <FontAwesomeIcon icon={faCircle} size={20} color="#FFF000" />
+          <Text style={styles.AjustText}>Carreta</Text>
+        </View>
+        <View style={styles.Icon}>
+          <FontAwesomeIcon icon={faCircle} size={20} color="#5F95F0" />
+          <Text style={styles.AjustText}>Bitrem</Text>
+        </View>
       </View>
       <FlatList
         data={viagensList}
@@ -69,6 +96,21 @@ const styles = StyleSheet.create({
     paddingLeft: 40,
     paddingRight: 40,
     color: '#00433E',
+  },
+  HeaderInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderRadius: 5,
+    margin: 20,
+    padding: 15,
+    backgroundColor: 'white',
+  },
+  Icon: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  AjustText: {
+    marginLeft: 5,
   },
 });
 

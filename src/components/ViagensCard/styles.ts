@@ -3,13 +3,16 @@ import { StyleSheet, View, Text } from 'react-native';
 const styles = StyleSheet.create({
   Container: {
     flex: 1,
-    margin: 20,
+    marginHorizontal: 20,
+    marginVertical: 10,
+    borderRadius: 5,
+    backgroundColor: 'white',
+  },
+  Content: {
     paddingTop: 15,
     paddingBottom: 15,
-    borderRadius: 5,
     paddingLeft: 20,
     paddingRight: 20,
-    backgroundColor: 'white',
   },
   loginButton: {
     margin: 10,
@@ -51,6 +54,38 @@ const styles = StyleSheet.create({
     color: 'red',
     fontWeight: 'bold',
     fontSize: 14,
+  },
+  BoxTitleBlue: {
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5,
+    backgroundColor: '#5F95F0',
+    flexDirection: 'row',
+    padding: 8,
+    justifyContent: 'space-between',
+  },
+  BoxTitleGreen: {
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5,
+    backgroundColor: '#00AC00',
+    flexDirection: 'row',
+    padding: 8,
+    justifyContent: 'space-between',
+  },
+  BoxTitleYellow: {
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5,
+    backgroundColor: '#FFF000',
+    flexDirection: 'row',
+    padding: 8,
+    justifyContent: 'space-between',
+  },
+  TextStyle: {
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  TextStyleYellow: {
+    fontWeight: 'bold',
+    color: 'black',
   },
 });
 

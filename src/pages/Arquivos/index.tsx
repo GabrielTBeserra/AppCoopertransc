@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../../components/Header';
 import LogoutSheet from '../../components/LogoutSheet/LogoutSheet';
 import { useGet } from '../../hooks/useFetch';
+import IViagens from '../../types/IViagens';
 
 function Arquivos() {
   const navigation = useNavigation();
@@ -24,7 +25,7 @@ function Arquivos() {
   const [hasPermission, setHasPermission] = React.useState<string>('');
   const snapPoints = React.useMemo(() => ['20%'], []);
   const [type, setType] = React.useState(CameraType.back);
-  const [state, request] = useGet('http://www.coopertransc.com.br/api/public/api/minhasviagens/atual/{id}', false);
+  const [state, request] = useGet<Array<IViagens>>('http://www.coopertransc.com.br/api/public/api/minhasviagens/atual/{id}', false);
 
   React.useEffect(() => {
     console.log(state);
@@ -77,7 +78,7 @@ function Arquivos() {
   if (hasPermission === null) {
     return <View />;
   }
-  if (hasPermission === false) {
+  if (hasPermission === 'false') {
     return <Text>No access to camera</Text>;
   }
 
@@ -89,71 +90,83 @@ function Arquivos() {
         bottomSheetModalRef={bottomSheetModalRef}
       />
 
-      <Button title="Adicionar nova" onPress={() => bottomSheetModalButtons.current?.snapToIndex(0)} />
-
-      <View style={{
-        flexDirection: 'column',
-        alignItems: 'center',
-        flex: 1,
-      }}
-      >
-        <ScrollView>
-          <FlatList
-            data={images}
-            numColumns={2}
-            scrollEnabled
-            listKey="BrowseCategories"
-            renderItem={({ item, index }) => (
-              <View style={{ margin: 5 }}>
-                <Image source={{ uri: item }} style={{ height: 250, width: 150 }} />
-              </View>
-            )}
-          />
-        </ScrollView>
-      </View>
-
-      <BottomSheet
-        snapPoints={snapPoints}
-        ref={bottomSheetModalButtons}
-        enablePanDownToClose
-        index={-1}
-      >
-        <BottomSheetView focusHook={useFocusEffect}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-            <Pressable
-              style={{
-                backgroundColor: '#00433E',
-                padding: 25,
-                borderRadius: 100,
-              }}
-              onPress={teste}
-            >
-              <FontAwesomeIcon
-                icon={faCamera}
-                size={60}
-                color="white"
+      {state && state.length > 0 ? (
+        <>
+          <Button title="Adicionar nova" onPress={() => bottomSheetModalButtons.current?.snapToIndex(0)} />
+          <View style={{
+            flexDirection: 'column',
+            alignItems: 'center',
+            flex: 1,
+          }}
+          >
+            <ScrollView>
+              <FlatList
+                data={images}
+                numColumns={2}
+                scrollEnabled
+                listKey="BrowseCategories"
+                renderItem={({ item, index }) => (
+                  <View style={{ margin: 5 }}>
+                    <Image source={{ uri: item }} style={{ height: 250, width: 150 }} />
+                  </View>
+                )}
               />
-
-            </Pressable>
-            <Pressable
-              style={{
-                backgroundColor: '#00433E',
-                padding: 25,
-                borderRadius: 100,
-              }}
-              onPress={pickImage}
-            >
-              <FontAwesomeIcon
-                icon={faFolder}
-                size={60}
-                color="white"
-              />
-
-            </Pressable>
-
+            </ScrollView>
           </View>
-        </BottomSheetView>
-      </BottomSheet>
+
+          <BottomSheet
+            snapPoints={snapPoints}
+            ref={bottomSheetModalButtons}
+            enablePanDownToClose
+            index={-1}
+          >
+            <BottomSheetView focusHook={useFocusEffect}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                <Pressable
+                  style={{
+                    backgroundColor: '#00433E',
+                    padding: 25,
+                    borderRadius: 100,
+                  }}
+                  onPress={teste}
+                >
+                  <FontAwesomeIcon
+                    icon={faCamera}
+                    size={60}
+                    color="white"
+                  />
+
+                </Pressable>
+                <Pressable
+                  style={{
+                    backgroundColor: '#00433E',
+                    padding: 25,
+                    borderRadius: 100,
+                  }}
+                  onPress={pickImage}
+                >
+                  <FontAwesomeIcon
+                    icon={faFolder}
+                    size={60}
+                    color="white"
+                  />
+
+                </Pressable>
+
+              </View>
+            </BottomSheetView>
+          </BottomSheet>
+
+        </>
+
+      ) : (
+        <>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>Voce não possui nenhuma viagem ativa</Text>
+          </View>
+        </>
+      )}
+      <LogoutSheet bottomSheetModalRef={bottomSheetModalRef} />
     </View>
   );
 }

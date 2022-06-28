@@ -27,6 +27,40 @@ const ViagensCard: React.FC<Props> = ({ data }) => {
     return `${dia}/${mes}/${ano}`;
   };
 
+  const getBoxColor = (type: string) => {
+    if (type === 'CVB') {
+      return styles.BoxTitleBlue;
+    }
+    if (type === 'CS' || type === 'CV') {
+      return styles.BoxTitleYellow;
+    }
+    if (type === 'TS' || type === 'TB') {
+      return styles.BoxTitleGreen;
+    }
+    return null;
+  };
+
+  const getTextColor = (type: string) => {
+    if (type === 'CVB') {
+      return styles.TextStyle;
+    }
+    if (type === 'CS' || type === 'CV') {
+      return styles.TextStyleYellow;
+    }
+    if (type === 'TS' || type === 'TB') {
+      return styles.TextStyle;
+    }
+    return null;
+  };
+
+  const zeroFill = (number: string, width = 3) => {
+    width -= number.toString().length;
+    if (width > 0) {
+      return new Array(width + (/\./.test(number) ? 2 : 1)).join('0') + number;
+    }
+    return `${number}`; // always return a string
+  };
+
   const differ = (d1: string, d2: string) => {
     const dif = moment(d2, 'YYYY-MM-DD').diff(moment(d1, 'YYYY-MM-DD'));
     return moment.duration(dif).asDays();
@@ -51,49 +85,61 @@ const ViagensCard: React.FC<Props> = ({ data }) => {
 
   return (
     <View style={styles.Container}>
-      <View style={styles.Title}>
-        <View style={styles.TitleIcon}>{typeOsStatus(data.escolha)}</View>
-        <Text style={styles.Title}>
-          {data.data_marcacao ? dataFormatter(data.data_marcacao) : ''}
-        </Text>
+      <View style={getBoxColor(data.tipo)}>
+        <View>
+          <Text style={getTextColor(data.tipo)}>
+            {`${dataFormatter(data.data_marcacao)} ${data.hora_marcacao}`}
+          </Text>
+        </View>
       </View>
-      <View style={styles.Line}>
-        <FontAwesomeIcon icon={faUser} size={20} color="#00433E" />
-        <Text style={{ marginLeft: 5 }}>{data.nome}</Text>
-      </View>
-      <View style={styles.Line}>
-        <FontAwesomeIcon icon={faTruck} size={20} color="#00433E" />
-        <Text style={{ marginLeft: 5 }}>{data.descricao}</Text>
-      </View>
-      <View style={styles.Line}>
-        <Text>{`${data.cidade_origem} - ${data.estado_origem}`} </Text>
-        <Text>{`${data.cidade_destino} - ${data.estado_destino}`} </Text>
-      </View>
-      <View style={styles.LineWithRow}>
-        <MultiSlider
-          values={[0, 100]}
-          min={0}
-          max={100}
-          step={1}
-          enabledOne={false}
-          enabledTwo={false}
-          markerStyle={{ borderColor: 'red ' }}
-          allowOverlap
-          snapped
-        />
-        <Text style={{ marginTop: -20 }}>{data.distancia} Km</Text>
-      </View>
-      <View style={styles.Line}>
-        <Text>Marcou em:</Text>
-        <Text>{dataFormatter(data.data_marcacao)}</Text>
-      </View>
-      <View style={styles.Line}>
-        <Text>Viajou em:</Text>
-        <Text>{dataFormatter(data.data_escolha)}</Text>
-      </View>
-      <View style={styles.Line}>
-        <Text>Diferença em dias:</Text>
-        <Text>{differ(data.data_marcacao, data.data_escolha)}</Text>
+      <View style={styles.Content}>
+        <View style={styles.Title}>
+          <View style={styles.TitleIcon}>{typeOsStatus(data.escolha)}</View>
+          <Text style={styles.Title}>
+            {data.data_marcacao ? dataFormatter(data.data_marcacao) : ''}
+          </Text>
+        </View>
+        <View style={styles.Line}>
+          <FontAwesomeIcon icon={faUser} size={20} color="#00433E" />
+          <Text style={{ marginLeft: 5 }}>{data.nome}</Text>
+        </View>
+        <View style={styles.Line}>
+          <FontAwesomeIcon icon={faTruck} size={20} color="#00433E" />
+          <Text style={{ marginLeft: 5 }}>{`${data.tipo} - ${data.placa}`}</Text>
+        </View>
+        <View style={styles.Line}>
+          <Text>
+            {`${data.cidade_origem} - ${data.estado_origem}`}
+            {' '}
+          </Text>
+          <Text>
+            {`${data.cidade_destino} - ${data.estado_destino}`}
+            {' '}
+          </Text>
+        </View>
+        {/* <View style={styles.LineWithRow}>
+          <MultiSlider
+            values={[0, 100]}
+            min={0}
+            max={100}
+            step={1}
+            enabledOne={false}
+            enabledTwo={false}
+            markerStyle={{ borderColor: 'red ' }}
+            allowOverlap
+            snapped
+          />
+          <Text style={{ marginTop: -20 }}>
+            {data.distancia}
+            {' '}
+            Km
+          </Text>
+        </View> */}
+        <View style={styles.Line}>
+          <Text>Marcou em:</Text>
+          <Text>{dataFormatter(data.data_marcacao)}</Text>
+          <Text>{data.hora_marcacao}</Text>
+        </View>
       </View>
     </View>
   );

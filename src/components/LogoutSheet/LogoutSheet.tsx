@@ -46,7 +46,7 @@ const LogoutSheet: React.FC<Props> = ({ bottomSheetModalRef }) => {
                 marginLeft: 5,
               }}
             >
-              Sair da conta
+              Sair
             </Text>
           </Pressable>
         </View>

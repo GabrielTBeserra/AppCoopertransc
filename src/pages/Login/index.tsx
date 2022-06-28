@@ -36,7 +36,7 @@ function LoginScreen() {
       );
 
       await AsyncStorage.setItem('@storage_Key', JSON.stringify(response.data));
-      navigation.navigate('MenuComp');
+      navigation.navigate('MenuComp' as never);
     } catch (e) {
       setInvalid(true);
     }

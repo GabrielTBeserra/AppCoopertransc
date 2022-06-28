@@ -41,7 +41,7 @@ const Menu: React.FC<Props> = ({ title, sub, bottomSheetModalRef }) => {
   return (
     <View style={styles.Container}>
       <View style={{ flex: 1 }}>
-        <Text style={styles.Name}>{title || `Ola, ${name}!`}</Text>
+        <Text style={styles.Name}>{title || `Olá, ${name}!`}</Text>
         <Text style={styles.Sub}>{sub || 'Bem-vindo(a) novamente'}</Text>
       </View>
 
