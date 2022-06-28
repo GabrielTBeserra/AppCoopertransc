@@ -1,6 +1,14 @@
 import * as React from 'react';
 import {
-  StyleSheet, Text, View, Button, Image, TouchableOpacity, Pressable, FlatList, ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  TouchableOpacity,
+  Pressable,
+  FlatList,
+  ScrollView,
 } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
@@ -41,7 +49,9 @@ function Arquivos() {
 
       if (value !== null) {
         const jsonValue = JSON.parse(value);
-        request(`http://www.coopertransc.com.br/api/public/api/minhasviagens/atual/${jsonValue.id}`);
+        request(
+          `http://www.coopertransc.com.br/api/public/api/minhasviagens/atual/${jsonValue.id}`,
+        );
       }
     } catch (e) {
       // error reading value
