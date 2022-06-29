@@ -4,6 +4,7 @@ import { faBox } from '@fortawesome/free-solid-svg-icons/faBox';
 import { faTicketSimple } from '@fortawesome/free-solid-svg-icons/faTicketSimple';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons/faTriangleExclamation';
 import { faMapLocation } from '@fortawesome/free-solid-svg-icons/faMapLocation';
+import { faMapPin } from '@fortawesome/free-solid-svg-icons/faMapPin';
 
 import IMenuRoute from '../../types/IMenuRoute';
 
@@ -29,9 +30,14 @@ const Routes: Array<IMenuRoute> = [
     navigateTo: 'Viagens',
   },
   {
-    name: 'Arquivos',
-    icon: faMapLocation,
+    name: 'Viagem Atual',
+    icon: faMapPin,
     navigateTo: 'Arquivos',
+  },
+  {
+    name: 'Perfil',
+    icon: faMapLocation,
+    navigateTo: 'Perfil',
   },
 ];
 
